@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="logout()">Logout</button>
+</body>
+<script defer>
+    async function logout(){
+        console.log("got here")
+        const res = await fetch('http://127.0.0.1:5000/logout')
+        console.log(res)
+        if(res.error){
+            console.log("logout error")
+        }else if(res.status == 200){
+            window.location.href = res.url 
+        }
+    } 
+</script>
+</html>
