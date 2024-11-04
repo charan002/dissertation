@@ -10,7 +10,7 @@
     @apply border border-black rounded-md;
 }
 
-header {
+#header {
     background-color: #D2E0FB;
     color: black;
     padding: 20px;

@@ -4,14 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Patient Homepage</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
 
 <body>
-    <h1>Hello {{ data.username }}! </h1>
-    <button onclick="logout()" class="btn-primary">Logout</button>
-    <button id="make-appointment-btn" class="btn-primary">Make Appointment</button>
+    <header id="header">
+        <div class="flex justify-end">
+            <div class="m-2">
+                <button id="make-appointment-btn" class="btn-primary">Make Appointment</button>
+            </div>
+            <div class="m-2">
+                <button onclick="logout()" class="btn-primary">Logout</button>
+            </div>
+        </div>
+    </header>
+    <div class="flex justify-start">  
+        <h1 class="text-6xl" >Hello {{ data.username }}! </h1>
+    </div>
+    
     <br/><br/>
     <div>
         <form id="appointment-form" class="ml-4">
