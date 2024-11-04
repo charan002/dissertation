@@ -7,19 +7,21 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
 <body>
-    <div class="place-content-center">
-        <form method="post" action="/login" class="border-black" >
-            <label for="username">username</label>
-            <input class="input-box" name="username"/>
-            <br>
-            <label for="password">password</label>
+    
+    <form method="post" action="/login" class="border-black" >
+        <div class="py-1">
+            <label for="username">Username</label>
+            <input class="input-box" name="username" />
+        </div>
+        <div class="py-1">
+            <label for="password">Password</label>
             <input class="input-box" name="password"/>
-            <br>
-            <button type="submit">submit</button>
-        </form>
-    </div>
+        </div>
+        <button class="py-1" type="submit">Submit</button>   
+    </form>    
+    
     <hr class="border-y-2">
-    <p>Dont have an account?</p>
-    <button><a href="/signup">sign up</a></button>
+    <p class="py-1" >Don't have an account?</p>
+    <button class="py-1" ><a href="/signup">Sign up</a></button>
 </body>
 </html>

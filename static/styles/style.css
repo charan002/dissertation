@@ -10,6 +10,10 @@
     @apply border border-black rounded-md;
 }
 
-hr{
-    color:  solid #0a0505;
+body{
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
 }
