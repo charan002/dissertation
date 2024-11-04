@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 .btn-primary {
-    @apply border border-black px-2 rounded-lg
+    @apply border border-black px-2 rounded-lg;
 }
 
 .input-box {
-    @apply border border-black rounded-md
+    @apply border border-black rounded-md;
+}
+
+hr{
+    color:  solid #0a0505;
 }
