@@ -7,4 +7,6 @@ Scripts/
 
 node_modules/
 
-static/styles/output.css
+**/styles/output.css
+
+.DS_Store
