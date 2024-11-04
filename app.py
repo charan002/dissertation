@@ -10,6 +10,12 @@ from pymongo import MongoClient
 from validator import signup_validator
 from validator import login_validator
 
+"""
+
+To run app - flask run --debug
+
+"""
+
 cient = MongoClient()
 
 client = MongoClient("mongodb://localhost:27017/")
@@ -57,6 +63,7 @@ def user_signup():
     elif request.method == 'POST':
         try:
             data = {
+                "username": request.form.get('username'),
                 "firstname": request.form.get('firstname'),
                 "lastname": request.form.get('lastname'),
                 "phonenumber": request.form.get('phonenumber'),
