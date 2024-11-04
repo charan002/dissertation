@@ -12,8 +12,18 @@
 
 body{
     text-align: center;
-    margin-top: 100px;
-    margin-bottom: 100px;
     border-top-width: 2px;
     border-bottom-width: 2px;
+}
+header {
+    background-color: #D2E0FB;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+main{
+    background-color: #DEE5D4;
+}
+hr{
+    border-color: black;
 }
