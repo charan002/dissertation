@@ -3,18 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Doctor Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
 <body>
-    <form method="post" action="/doc/login">
-        <label for="doctorid">doctorid</label>
-        <input class="input-box" name="doctorid"/><br/>
-        <label for="password">password</label>
-        <input class="input-box" name="password"/><br/>
-        <button type="submit">submit</button>
-    </form>
-    <p>Dont have an account?</p>
-    <button><a href="/doc/register">sign up</a></button>
+    <header>
+        <h1 class="text-6xl">Doctor Login screen</h1>
+    </header>
+    <hr>
+    <main class="px-5 pt-5 h-screen">
+        <h2 class="text-3xl">Enter your credentials</h2>
+        <br>
+        <form method="post" action="/doc/login">
+            <div class="py-1">
+                <label for="doctorid">Doctor Id</label>
+                <input class="input-box ml-1" name="doctorid"/><br/>
+            </div>
+            <div class="py-1">
+                <label for="password">Password</label>
+                <input class="input-box" name="password"/><br/>
+            </div>
+            <br>
+            <button class="input-box" type="submit">Login</button>
+        </form>
+        <br>
+        <hr>
+        <p class="py-1" >Don't have an account?</p>
+        <button class="input-box"><a href="/doc/register">Sign Up</a></button>
+    </main>
+    <footer>
+        <p>Copyright © #Gov. #of #India</p>
+    </footer>
 </body>
 </html>
