@@ -41,3 +41,8 @@ button{
     text-align: center;
     cursor: pointer;
 }
+#userHomeApptn{
+    padding-bottom: 50px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
