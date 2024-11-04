@@ -9,6 +9,17 @@ const logout = async () => {
     }
 }
 
+const doctorLogout = async () => {
+    console.log("logging out")
+    const res = await fetch('http://127.0.0.1:5000/doc/logout')
+    console.log(res)
+    if (res.error) {
+        console.log("logout error")
+    } else if (res.status == 200) {
+        window.location.href = res.url
+    }
+}
+
 const appointmentFormElement = document.getElementById("appointment-form")
 const makeAppointmentBtn = document.getElementById("make-appointment-btn")
 

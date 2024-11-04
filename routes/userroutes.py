@@ -6,7 +6,7 @@ from mongoclient import db
 
 user_routes = Blueprint('user', __name__)
 
-collection = db.mycollection
+collection = db["user"]
 
 @user_routes.route('/test')
 def testget():
@@ -31,20 +31,11 @@ def isAuthenticated():
                 user_type = identifyTypeOfUser()
                 if user_type == 'user':
                     return redirect('/')
-                elif user_type == 'doctor':
-                    return redirect('/doc/home')
         else:
             if (request.path != '/login' and request.path != '/signup') and not isUserAuthenticated():
                 return redirect('/login')
     except Exception as e:
         return jsonify({'error': f'{str(e)}'})
-
-@user_routes.route('/')
-def home():
-    data = {
-        'username': session.get('username')
-    }
-    return render_template('home.html', data=data)
 
 @user_routes.route('/login', methods=['GET', 'POST'])
 def user_login():
@@ -102,6 +93,13 @@ def user_logout():
             return redirect('/login')
     except:
         return jsonify({'error':'logout error'}),500
+    
+@user_routes.route('/')
+def home():
+    data = {
+        'username': session.get('username')
+    }
+    return render_template('home.html', data=data)
     
 @user_routes.route('/testmongo')
 def mongo_test():
