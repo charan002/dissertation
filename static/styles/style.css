@@ -16,28 +16,28 @@ header {
     padding: 20px;
     text-align: center;
 }
-#uLogin_body{
-    text-align: center;
-    border-top-width: 2px;
-    border-bottom-width: 2px;
-}
 main{
     background-color: #DEE5D4;
 }
 hr{
     border-color: black;
 }
-#uSignUpBtn{
-    border: 1px;
-    padding: 8px 32px;
-    display: inline-block;
-    background-color: orange;
+footer {
+    background-color: #8EACCD;
+    color: #fff;
+    padding: 20px;
     text-align: center;
 }
-#uSubmitBtn{
+body{
+    text-align: center;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+button{
     border: 1px;
     padding: 8px 32px;
     display: inline-block;
     background-color: orange;
     text-align: center;
+    cursor: pointer;
 }

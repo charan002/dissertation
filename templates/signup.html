@@ -6,21 +6,45 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
-<body>
-    <form method="post" action="/signup">
-        <label for="username">username</label>
-        <input name="username"/><br/>
-        <label for="firstname">firstname</label>
-        <input name="firstname"/><br/>
-        <label for="lastname">lastname</label>
-        <input name="lastname"/><br/>
-        <label for="phonenumber">phonenumber</label>
-        <input name="phonenumber"/><br/>
-        <label for="password">password</label>
-        <input name="password"/><br/>
-        <button type="submit">submit</button>
-    </form>
-    <p>Already have an account?</p>
-    <button><a href="/login">login</a></button>
+<body >
+    <header>
+        <h1 class="text-6xl">Patient Sign Up screen</h1>
+    </header>
+    <hr>
+    <main class="px-5 pt-5 h-screen">
+        <h2 class="text-3xl">Enter your details</h2>
+        <br>
+        <form method="post" action="/signup" class="border-black">
+            <div class="py-1">   
+                <label for="username">Username</label>
+                <input class="input-box" name="username"/><br/>
+            </div>
+            <div class="py-1">
+                <label for="firstname">First Name</label>
+                <input class="input-box" name="firstname"/><br/>
+            </div>
+            <div class="py-1">
+                <label for="lastname">Last Name</label>
+                <input class="input-box" name="lastname"/><br/>
+            </div>
+            <div class="py-1">
+                <label for="phonenumber">Phone Number</label>
+                <input class="input-box" name="phonenumber"/><br/>
+            </div>
+            <div class="py-1">
+                <label for="password">Password</label>
+                <input class="input-box" name="password"/><br/>
+            </div>
+            <br>
+            <button class="input-box" type="submit">Submit</button>
+        </form>
+        <br>
+        <hr>
+        <p class="py-1" >Already have an account?</p>
+        <button class="input-box"><a href="/login">Login</a></button>
+    </main>
+    <footer>
+        <p>Copyright © #Gov. #of #India</p>
+    </footer>
 </body>
 </html>
