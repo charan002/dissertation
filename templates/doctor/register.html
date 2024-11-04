@@ -7,28 +7,53 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
 <body>
-    <form method="post" action="/doc/register">
-        <label for="doctorid">doctorid</label>
-        <input name="doctorid"/><br/>
-        <label for="firstname">firstname</label>
-        <input name="firstname"/><br/>
-        <label for="lastname">lastname</label>
-        <input name="lastname"/><br/>
-        <label for="phonenumber">phonenumber</label>
-        <input name="phonenumber"/><br/>
-        <label for="doctortype">doctortype</label>
-        <input name="hospitalname"/><br/>
-        <label for="hospitalname">hospitalname</label>
-        <select name="doctortype" multiple>
-            <option value="general">general</option>
-            <option value="neuro">neuro</option>
-            <option value="diet">diet</option>
-        </select><br/>
-        <label for="password">password</label>
-        <input name="password"/><br/>
-        <button type="submit">submit</button>
-    </form>
-    <p>Already have an account?</p>
-    <button><a href="/doc/login">login</a></button>
+    <header>
+        <h1 class="text-6xl">Doctor Registration Screen</h1>
+    </header>
+    <hr>
+    <main class="px-5 pt-5 h-screen">
+        <h2 class="text-3xl">Enter your Details</h2>
+        <br>
+        <form method="post" action="/doc/register">
+            <div class="py-1">
+                <label for="doctorid">Doctor Id</label>
+                <input class="input-box" name="doctorid"/><br/>
+            </div>
+            <div class="py-1">
+                <label for="firstname">First Name</label>
+                <input class="input-box" name="firstname"/><br/>
+            </div>
+            <div class="py-1">
+                <label for="lastname">Last Name</label>
+                <input class="input-box" name="lastname"/><br/>
+            </div>
+            <div class="py-1">
+                <label for="phonenumber">Phone Number</label>
+                <input class="input-box" name="phonenumber"/><br/>
+            </div>
+            <div class="py-1"></div>
+            <label for="doctortype">Doctor Type</label>
+            <input class="input-box" name="hospitalname"/><br/>
+            <label for="hospitalname">Hospital Name</label>
+            <select class="input-box" name="doctortype" multiple>
+                <option value="general">General</option>
+                <option value="neuro">Neuro</option>
+                <option value="diet">Diet</option>
+            </select><br/>
+            <div class="py-1">
+                <label for="password">Password</label>
+                <input class="input-box" name="password"/><br/>
+            </div>
+            <br>
+            <button class="input-box" type="submit">Submit</button>
+        </form>
+        <br>
+        <hr>
+        <p>Already have an account?</p>
+        <button class="input-box"><a href="/doc/login">Login</a></button>
+    </main>
+    <footer>
+        <p>Copyright © #Gov. #of #India</p>
+    </footer>
 </body>
 </html>
