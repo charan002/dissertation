@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Doctor Registration</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
 <body>
@@ -31,15 +31,19 @@
                 <label for="phonenumber">Phone Number</label>
                 <input class="input-box" name="phonenumber"/><br/>
             </div>
-            <div class="py-1"></div>
-            <label for="hospitalname">Hospital Name</label>
-            <input class="input-box" name="hospitalname"/><br/>
+            <div class="py-1">
+                <label for="hospitalname">Hospital Name</label>
+                <input class="input-box" name="hospitalname"/><br/>
+            </div>
+            <div class="py-1">
             <label for="doctortype">Doctor Type</label>
-            <select class="input-box" name="doctortype" multiple>
+            <select class="input-box" name="doctortype">
+                <option selected disabled>Select</option>
                 <option value="general">General</option>
                 <option value="neuro">Neuro</option>
                 <option value="diet">Diet</option>
             </select><br/>
+            </div>
             <div class="py-1">
                 <label for="password">Password</label>
                 <input class="input-box" name="password"/><br/>
@@ -49,7 +53,7 @@
         </form>
         <br>
         <hr>
-        <p>Already have an account?</p>
+        <p class="py-1">Already have an account?</p>
         <button class="input-box"><a href="/doc/login">Login</a></button>
     </main>
     <footer>
