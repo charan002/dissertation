@@ -1,3 +1,6 @@
 __pycache__/
 .projectenv/
 .venv/
+
+Lib/
+Scripts/
