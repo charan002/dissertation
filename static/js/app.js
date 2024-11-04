@@ -35,6 +35,7 @@ const handleSlotBooking = (event) => {
     const data = event.target.value.split("-")
     document.getElementById("slot-confirm").innerHTML = `
         <div>
+            <h1>Please confirm your slot booking</h1>
             <h1>Hospital : ${data[3]}</h1>
             <h1>Doctor Name : ${data[4]} ${data[5]}</h1>
             <h1>Time slot : ${data[0]} - ${data[1]}</h1>

@@ -32,9 +32,21 @@
     <div id="search-results">
     </div>
     <div>
-        <h1>Please confirm you slot booking</h1>
         <div id="slot-confirm">
         </div>
+    </div>
+    {% if data.appointments %}
+        {% for item in data.appointments %}
+            <p>{{ item.hospitalname }}</p>
+            <p>{{ item.doctorname }}</p>
+            <p>{{ item.timeSlot }}</p>
+            <p>{{ item.status }}</p>
+        {% endfor %}
+    {% else %}
+        <p>No Appointments booked</p>
+    {% endif %}
+    <div>
+        <h1></h1>
     </div>
 </body>
 <script src="{{ url_for('static', filename='js/app.js' ) }}" defer ></script>

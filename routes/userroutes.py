@@ -15,7 +15,6 @@ appointments_collection = db["appointments"]
 def testget():
     return jsonify({"this": "works"})
 
-
 def isUserAuthenticated():
     if session.get('username') != None and collection.find_one({'username': session.get('username')}) != None:
         return True
@@ -103,8 +102,11 @@ def user_logout():
     
 @user_routes.route('/')
 def home():
+    appointments = list(appointments_collection.find({'username': session.get('username')}))
+    changeObjectId(appointments)
     data = {
-        'username': session.get('username')
+        'username': session.get('username'),
+        'appointments': appointments
     }
     return render_template('home.html', data=data)
     
@@ -114,7 +116,7 @@ def get_search_results():
         data = list(doc_collection.find({'doctortype': request.get_json()['doctype']}))
         timeRepData = list(time_reporting_collection.find({'$and': [
             {'date': {'$eq': request.get_json()['date']}},
-            {'starttime': {'$gte': request.get_json()['time']}}
+            {'endtime': {'$gte': request.get_json()['time']}}
         ]}))
         final_list = []
         changeObjectId(data)
@@ -126,7 +128,6 @@ def get_search_results():
                         **j, **i
                     }
                     final_list.append(j)
-        print(final_list)
         return jsonify(final_list)
     except Exception as e:
         return jsonify({'error': f'generic error {str(e)}'})
