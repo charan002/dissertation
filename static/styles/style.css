@@ -10,20 +10,34 @@
     @apply border border-black rounded-md;
 }
 
-body{
-    text-align: center;
-    border-top-width: 2px;
-    border-bottom-width: 2px;
-}
 header {
     background-color: #D2E0FB;
     color: black;
     padding: 20px;
     text-align: center;
 }
+#uLogin_body{
+    text-align: center;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
 main{
     background-color: #DEE5D4;
 }
 hr{
     border-color: black;
+}
+#uSignUpBtn{
+    border: 1px;
+    padding: 8px 32px;
+    display: inline-block;
+    background-color: orange;
+    text-align: center;
+}
+#uSubmitBtn{
+    border: 1px;
+    padding: 8px 32px;
+    display: inline-block;
+    background-color: orange;
+    text-align: center;
 }
