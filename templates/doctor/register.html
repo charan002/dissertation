@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="/doc/register">
+        <label for="doctorid">doctorid</label>
+        <input name="doctorid"/><br/>
+        <label for="firstname">firstname</label>
+        <input name="firstname"/><br/>
+        <label for="lastname">lastname</label>
+        <input name="lastname"/><br/>
+        <label for="phonenumber">phonenumber</label>
+        <input name="phonenumber"/><br/>
+        <label for="doctortype">doctortype</label>
+        <select name="doctortype" multiple>
+            <option value="general">general</option>
+            <option value="neuro">neuro</option>
+            <option value="diet">diet</option>
+        </select><br/>
+        <label for="password">password</label>
+        <input name="password"/><br/>
+        <button type="submit">submit</button>
+    </form>
+    <p>Already have an account?</p>
+    <button><a href="/doc/login">login</a></button>
+</body>
+</html>

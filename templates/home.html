@@ -5,14 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
 
 <body>
-    <h1> {{ data.username }} </h1>
-    <button onclick="logout()">Logout</button>
-    <button>Make Appointment</button>
-    <div id="appointment-form">
-
+    <h1>Hello {{ data.username }}! </h1>
+    <button onclick="logout()" class="btn-primary">Logout</button>
+    <button id="make-appointment-btn" class="btn-primary">Make Appointment</button>
+    <br/><br/>
+    <div>
+        <form id="appointment-form" class="ml-4">
+            <label for="doctype">Doc type</label>
+            <select class="input-box" name="doctype" type="">
+                <option value="general">general</option>
+                <option value="nuero">nuero</option>
+                <option value="diet">diet</option>
+            </select><br/>
+            <button type="submit" class="btn-primary">Submit</button>
+        </form>
     </div>
 </body>
 <script src="{{ url_for('static', filename='js/app.js' ) }}" defer ></script>
