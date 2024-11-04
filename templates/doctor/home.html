@@ -8,7 +8,34 @@
 </head>
 <body>
     <h1>Welcome {{ data.doctorid }} </h1>
+    <h1>Working at: {{ data.hospital }}</h1>
     <button onclick="doctorLogout()" class="btn-primary">Logout</button>
+    <form id="time-report-form">
+        <h1>Add time reporting</h1>
+        <div>
+            <label for="date">Date</label>
+            <input name="date" id="date-report" type="date"/>
+        </div>
+        <div>
+            <label for="starttime">Start time</label>
+            <input name="starttime" id="time-report" type="time" />
+        </div>
+        <div>
+            <label for="endtime">End time</label>
+            <input name="endtime" id="time-report" type="time" />
+        </div>
+        <button id="time-report-submit-btn">Submit</button>
+    </form>
+    <div>
+        <h1>Your Time reportings</h1>
+        {% for report in data.timeReporting %}
+        <div class="border border-black">
+            <p>{{ report.date }}</p>
+            <p>{{ report.starttime }}</p>
+            <p>{{ report.endtime }}</p>
+        </div>
+        {% endfor %}
+    </div>
 </body>
-<script src="{{ url_for('static', filename='js/app.js' ) }}" defer ></script>
+<script src="{{ url_for('static', filename='js/doctorHome.js' ) }}" defer ></script>
 </html>

@@ -7,6 +7,7 @@ from validator import doctor_login_validator, doctor_signup_validator
 doctor_routes = Blueprint('doctor', __name__)
 
 collection = db["doctor"]
+timeReportCollection = db["timereporting"]
 
 def isDoctorAuthenticated():
     if session.get('doctorid') != None and collection.find_one({'doctorid': session.get('doctorid')}) != None:
@@ -67,6 +68,7 @@ def user_signup():
                 'firstname': request.form.get('firstname'),
                 'lastname': request.form.get('lastname'),
                 'phonenumber': request.form.get('phonenumber'),
+                'hospitalname': request.form.get('hospitalname'),
                 'doctortype': request.form.get('doctortype'),
                 'password': request.form.get('password')
             }
@@ -95,12 +97,29 @@ def user_logout():
 
 @doctor_routes.route('/')
 def home():
+    time_data = list(timeReportCollection.find({'doctorid': session.get('doctorid')}))
+    doc_info = collection.find_one({'doctorid': session.get('doctorid')})
+    for doc in time_data:
+        doc['_id'] = str(doc['_id'])
     data = {
-        'doctorid': session.get('doctorid')
+        'doctorid': session.get('doctorid'),
+        'timeReporting': time_data,
+        'hospital': doc_info.get('hospitalname')
     }
     return render_template('doctor/home.html', data=data)
 
-@doctor_routes.route('/test')
+@doctor_routes.post('/submit/timereport')
+def submit_time_report():
+    print(request.get_json())
+    data = {
+        'doctorid': session['doctorid'],
+        **request.get_json()
+    }
+    timeReportCollection.insert_one(data)
+    return jsonify({"tjos": "wor"})
+
+
+@doctor_routes.post('/test')
 def testget():
     return jsonify({"this": "works"})
     
