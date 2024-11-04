@@ -7,7 +7,6 @@
     <title>Patient Homepage</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
-
 <body>
     <header id="header">
         <div class="flex justify-end">
@@ -19,46 +18,52 @@
             </div>
         </div>
     </header>
-    <div class="flex justify-start">  
-        <h1 class="text-6xl" >Hello {{ data.username }}! </h1>
-    </div>
-    
-    <br/><br/>
-    <div>
-        <form id="appointment-form" class="ml-4">
-            <label for="doctype">Doc type</label>
-            <select id="doctype-selector" class="input-box" name="doctype">
-                <option selected disabled>select</option>
-                <option value="general">general</option>
-                <option value="nuero">nuero</option>
-                <option value="diet">diet</option>
-            </select><br/>
-            <label for="date">Date</label>
-            <input id="appointment-date" name="date" type="date"/><br/>
-            <label for="time">Time</label>
-            <input name="time" type="time"/><br/>
-            <button id="search-submit" class="btn-primary">Submit</button>
-        </form>
-    </div>
-    <div id="search-results">
-    </div>
-    <div>
-        <div id="slot-confirm">
+    <hr>
+    <main>
+        <div class="flex justify-start">  
+            <h1 class="text-6xl" >Hello {{ data.username }}! </h1>
         </div>
-    </div>
-    {% if data.appointments %}
-        {% for item in data.appointments %}
-            <p>{{ item.hospitalname }}</p>
-            <p>{{ item.doctorname }}</p>
-            <p>{{ item.timeSlot }}</p>
-            <p>{{ item.status }}</p>
-        {% endfor %}
-    {% else %}
-        <p>No Appointments booked</p>
-    {% endif %}
-    <div>
-        <h1></h1>
-    </div>
+        
+        <br/><br/>
+        <div>
+            <form id="appointment-form" class="ml-4">
+                <label for="doctype">Doc type</label>
+                <select id="doctype-selector" class="input-box" name="doctype">
+                    <option selected disabled>select</option>
+                    <option value="general">general</option>
+                    <option value="nuero">nuero</option>
+                    <option value="diet">diet</option>
+                </select><br/>
+                <label for="date">Date</label>
+                <input id="appointment-date" name="date" type="date"/><br/>
+                <label for="time">Time</label>
+                <input name="time" type="time"/><br/>
+                <button id="search-submit" class="btn-primary">Submit</button>
+            </form>
+        </div>
+        <div id="search-results">
+        </div>
+        <div>
+            <div id="slot-confirm">
+            </div>
+        </div>
+        {% if data.appointments %}
+            {% for item in data.appointments %}
+                <p>{{ item.hospitalname }}</p>
+                <p>{{ item.doctorname }}</p>
+                <p>{{ item.timeSlot }}</p>
+                <p>{{ item.status }}</p>
+            {% endfor %}
+        {% else %}
+            <p>No Appointments booked</p>
+        {% endif %}
+        <div>
+            <h1></h1>
+        </div>
+    </main>
+    <footer>
+        <p>Copyright © #Gov. #of #India</p>
+    </footer>
 </body>
 <script src="{{ url_for('static', filename='js/app.js' ) }}" defer ></script>
 
