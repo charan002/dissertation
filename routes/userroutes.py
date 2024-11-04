@@ -7,6 +7,9 @@ from mongoclient import db
 user_routes = Blueprint('user', __name__)
 
 collection = db["user"]
+doc_collection = db["doctor"]
+time_reporting_collection = db["timereporting"]
+appointments_collection = db["appointments"]
 
 @user_routes.route('/test')
 def testget():
@@ -20,6 +23,10 @@ def isUserAuthenticated():
 
 def identifyTypeOfUser():
     return session.get('usertype')
+
+def changeObjectId(data):
+    for item in data:
+        item['_id'] = str(item['_id'])
 
 @user_routes.before_request
 def isAuthenticated():
@@ -101,6 +108,41 @@ def home():
     }
     return render_template('home.html', data=data)
     
+@user_routes.post('/getsearchresults')
+def get_search_results():
+    try:
+        data = list(doc_collection.find({'doctortype': request.get_json()['doctype']}))
+        timeRepData = list(time_reporting_collection.find({'$and': [
+            {'date': {'$eq': request.get_json()['date']}},
+            {'starttime': {'$gte': request.get_json()['time']}}
+        ]}))
+        final_list = []
+        changeObjectId(data)
+        changeObjectId(timeRepData)
+        for i in timeRepData:
+            for j in data:
+                if i['doctorid'] == j['doctorid']:
+                    j = {
+                        **j, **i
+                    }
+                    final_list.append(j)
+        print(final_list)
+        return jsonify(final_list)
+    except Exception as e:
+        return jsonify({'error': f'generic error {str(e)}'})
+
+@user_routes.post('/submit/appointment')
+def submit_appointment():
+    try:
+        data = {
+            **request.get_json(),
+            'username': session.get('username')
+        }
+        appointments_collection.insert_one(data)
+        return jsonify({'status': 'success'})
+    except Exception as e:
+        return jsonify({'error': f'{str(e)}'})
+
 @user_routes.route('/testmongo')
 def mongo_test():
     documents_list = list(collection.find())

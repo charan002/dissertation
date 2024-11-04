@@ -16,13 +16,25 @@
     <div>
         <form id="appointment-form" class="ml-4">
             <label for="doctype">Doc type</label>
-            <select class="input-box" name="doctype" type="">
+            <select id="doctype-selector" class="input-box" name="doctype">
+                <option selected disabled>select</option>
                 <option value="general">general</option>
                 <option value="nuero">nuero</option>
                 <option value="diet">diet</option>
             </select><br/>
-            <button type="submit" class="btn-primary">Submit</button>
+            <label for="date">Date</label>
+            <input id="appointment-date" name="date" type="date"/><br/>
+            <label for="time">Time</label>
+            <input name="time" type="time"/><br/>
+            <button id="search-submit" class="btn-primary">Submit</button>
         </form>
+    </div>
+    <div id="search-results">
+    </div>
+    <div>
+        <h1>Please confirm you slot booking</h1>
+        <div id="slot-confirm">
+        </div>
     </div>
 </body>
 <script src="{{ url_for('static', filename='js/app.js' ) }}" defer ></script>

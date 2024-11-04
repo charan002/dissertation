@@ -8,6 +8,7 @@ doctor_routes = Blueprint('doctor', __name__)
 
 collection = db["doctor"]
 timeReportCollection = db["timereporting"]
+appointmentsCollection = db['appointments']
 
 def isDoctorAuthenticated():
     if session.get('doctorid') != None and collection.find_one({'doctorid': session.get('doctorid')}) != None:
@@ -16,6 +17,10 @@ def isDoctorAuthenticated():
 
 def identifyTypeOfUser():
     return session.get('usertype')
+
+def changeObjectId(data):
+    for item in data:
+        item['_id'] = str(item['_id'])
 
 @doctor_routes.before_request
 def isAuthenticated():
@@ -99,12 +104,15 @@ def user_logout():
 def home():
     time_data = list(timeReportCollection.find({'doctorid': session.get('doctorid')}))
     doc_info = collection.find_one({'doctorid': session.get('doctorid')})
+    appointment_info = list(appointmentsCollection.find({'doctorid': session.get('doctorid')}))
     for doc in time_data:
         doc['_id'] = str(doc['_id'])
+    changeObjectId(appointment_info)
     data = {
         'doctorid': session.get('doctorid'),
         'timeReporting': time_data,
-        'hospital': doc_info.get('hospitalname')
+        'hospital': doc_info.get('hospitalname'),
+        'appointments': appointment_info
     }
     return render_template('doctor/home.html', data=data)
 

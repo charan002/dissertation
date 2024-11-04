@@ -36,6 +36,15 @@
         </div>
         {% endfor %}
     </div>
+    <div>
+        <h1>Your Appointments</h1>
+        {% for aptmt in data.appointments %}
+        <div class="border border-black">
+            <p>{{ aptmt.username }}</p>
+            <p>{{ aptmt.timeSlot }}</p>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 <script src="{{ url_for('static', filename='js/doctorHome.js' ) }}" defer ></script>
 </html>
