@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
+</head>
+<body>
+    <header id="header">
+        <h1 class="text-6xl">Pharmacist Registration Screen</h1>
+    </header>
+    <hr>
+    <main class="px-5 pt-5 h-screen">
+        <h2 class="text-3xl">Enter your Details</h2>
+        <br>
+        <form method="post" action="/pharma/register">
+            <div class="py-1">
+                <label for="pharmaid">Pharmacist Id</label>
+                <input type="number" min="10000" max="99999" title="enter value between 3 and 10" class="input-box" name="pharmaid" required/><br/>
+            </div>
+            <div class="py-1">
+                <label for="firstname">First Name</label>
+                <input type="text" minlength="2" maxlength="10" class="input-box" name="firstname" required/><br/>
+            </div>
+            <div class="py-1">
+                <label for="lastname">Last Name</label>
+                <input type="text" minlength="2" maxlength="10" class="input-box" name="lastname" required/><br/>
+            </div>
+            <div class="py-1">
+                <label for="phonenumber">Phone Number</label>
+                <input type="number" minlength="10" maxlength="10" class="input-box" name="phonenumber" required/><br/>
+            </div>
+            <div class="py-1">
+                <label for="pharmacyname">Pharmacy Name</label>
+                <input type="text" minlength="2" maxlength="10" class="input-box" name="pharmacyname" required/><br/>
+            </div>
+            <div class="py-1">
+                <label for="password">Password</label>
+                <input type="text" minlength="2" maxlength="10" class="input-box" name="password" required/><br/>
+            </div>
+            <br>
+            <button class="input-box" type="submit">Submit</button>
+        </form>
+        <br>
+        <hr>
+        <p class="py-1">Already have an account?</p>
+        <button class="input-box"><a href="/pharma/login">Login</a></button>
+    </main>
+    <footer>
+        <p>Copyright © #Gov. #of #India</p>
+    </footer>
+</body>
+</html>

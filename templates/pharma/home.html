@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
+</head>
+<body>
+    <h1>Welcome {{ data.pharmaid }} </h1>
+    <button onclick="logout()" class="btn-primary">Logout</button>
+    <main>
+        <p>Test</p>
+    </main>
+    <footer>
+        <p>Copyright © #Gov. #of #India</p>
+    </footer>
+</body>
+<script src="{{ url_for('static', filename='js/app.js' ) }}" defer ></script>
+
+</html>

@@ -5,6 +5,8 @@ from routes.doctorroutes import doctor_routes
 
 from routes.userroutes import user_routes
 
+from routes.Pharmaroutes import pharma_routes
+
 
 '''
 
@@ -20,6 +22,7 @@ To configure tailwind CSS
 app = Flask(__name__)
 
 app.register_blueprint(doctor_routes, url_prefix='/doc')
+app.register_blueprint(pharma_routes, url_prefix='/pharma')
 app.register_blueprint(user_routes)
 
 app.secret_key = "veryprivatekey"
