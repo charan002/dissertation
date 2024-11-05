@@ -114,6 +114,7 @@ def home():
 def get_search_results():
     try:
         data = list(doc_collection.find({'doctortype': request.get_json()['doctype']}))
+        print(data)
         timeRepData = list(time_reporting_collection.find({'$and': [
             {'date': {'$eq': request.get_json()['date']}},
             {'endtime': {'$gte': request.get_json()['time']}}
