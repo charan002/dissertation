@@ -8,6 +8,24 @@ const logout = async () => {
         window.location.href = res.url
     }
 }
+const dialog=()=>{
+    const Fdiv= document.getElementById("dialog")
+    const form = document.getElementById("appointment-form")
+    const wrongbtn = document.getElementById("wrong")
+    const appntbtn = document.getElementById("make-appointment-btn")
+    appntbtn.addEventListener('click',function(){
+        Fdiv.classList.remove("hidden")
+    })
+    Fdiv.addEventListener('click',(event)=>{
+        if(!form.contains(event.target)){
+           Fdiv.classList.add("hidden")
+        }
+    })
+    wrongbtn.addEventListener('click',()=>{
+        Fdiv.classList.add("hidden")
+    })
+    
+}
 
 const appointmentFormElement = document.getElementById("appointment-form")
 const makeAppointmentBtn = document.getElementById("make-appointment-btn")

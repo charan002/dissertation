@@ -7,45 +7,49 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
 <body>
-    <header id="header">
-        <div class="flex justify-end">
-            <div class="m-2">
-                <button id="make-appointment-btn" class="btn-primary">Make Appointment</button>
-            </div>
-            <div class="m-2">
-                <button onclick="logout()" class="btn-primary">Logout</button>
-            </div>
-        </div>
-    </header>
-    <hr>
-    <main>
-        <div class="flex justify-start">  
-            <h1 class="text-4xl px-4 pt-4" >Hello {{ data.username }}! </h1>
-        </div>
-        <br/><br/>
-        <div>
-            <form id="appointment-form" class="ml-4">
-                <div class="py-1">
-                    <label for="doctype">Doc type</label>
-                    <select id="doctype-selector" class="input-box" name="doctype">
-                        <option selected disabled>select</option>
-                        <option value="general">general</option>
-                        <option value="neuro">neuro</option>
-                        <option value="diet">diet</option>
-                    </select><br/>
+
+     <div id="dialog" class="hidden w-full absolute z-10 h-screen flex flex-col justify-center backdrop-blur-sm">
+        <div class="flex justify-center h-full">
+          <div class="flex flex-col justify-center absolute z-20 w-[450px] h-full  "> 
+            <div id="formbdiv"class="border border-black rounded shadow-2xl "> 
+                <div class="h-[50px] w-[50px]">
+                    <img id="wrong"  src="../wrong.svg"/>
                 </div>
-                <div class="py-1">
-                    <label for="date">Date</label>
-                    <input class="input-box" id="appointment-date" name="date" type="date"/><br/>
-                </div>
-                <div class="py-1">
-                    <label for="time">Time</label>
-                    <input class="input-box" name="time" type="time"/><br/>
-                </div>
-                <br>
+                <form id="appointment-form" class="p-10 flex flex-col" >
+                <label for="doctype">Doc type</label>
+                <select id="doctype-selector" class="input-box" name="doctype">
+                    <option selected disabled>select</option>
+                    <option value="general">general</option>
+                    <option value="nuero">nuero</option>
+                    <option value="diet">diet</option>
+                </select><br/>
+                <label for="date">Date</label>
+                <input class="border border-black rounded "id="appointment-date" name="date" type="date"/><br/>
+                <label for="time">Time</label>
+                <input class="border border-black rounded " name="time" type="time"/><br/>
                 <button id="search-submit" class="btn-primary">Submit</button>
             </form>
+            </div>
+          </div>
+         </div>
         </div>
+    <main class="">
+        <header id="header">
+            <div class="flex justify-end">
+                <div class="m-2">
+                    <button onclick="dialog()"id="make-appointment-btn" class="btn-primary">Make Appointment</button>
+                </div>
+                <div class="m-2">
+                    <button onclick="logout()" class="btn-primary">Logout</button>
+                </div>
+            </div>
+        </header>
+        <div class="flex justify-start">  
+            <h1 class="text-6xl" >Hello {{ data.username }}! </h1>
+        </div>
+        
+        <br/><br/>
+       
         <div id="search-results">
         </div>
         <div>
