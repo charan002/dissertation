@@ -143,6 +143,33 @@ def change_appointment_status():
     except Exception as e:
         return jsonify({'error': f'{str(e)}'})
 
+@doctor_routes.get('/patientdetails')
+def render_patient_details():
+    username = request.args.get('username')
+    id = request.args.get('id')
+    appointment_data = list(appointmentsCollection.find({'_id': ObjectId(id)}))
+    user_appointments = list(appointmentsCollection.find({'$and': [
+        {'doctorid': session.get('doctorid')},
+        {'username': username}
+    ]}))
+    data = {
+        'currentAppointment': appointment_data,
+        'allUserAppointments': user_appointments
+    }
+    print(data)
+    return render_template('/doctor/patientdetails.html', data=data)
+
+@doctor_routes.post('/submit/prescription')
+def submit_prescription():
+    try:
+        id = request.get_json()['id']
+        print(id, request.get_json()['prescription'])
+        appointmentsCollection.update_one({'_id': ObjectId(id)}, {'$set': {'prescription': request.get_json()['prescription']}})
+        return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({'error': f'{str(e)}'})
+
+
 @doctor_routes.post('/test')
 def testget():
     return jsonify({"this": "works"})

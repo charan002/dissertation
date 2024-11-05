@@ -48,3 +48,7 @@ const handleStatusChange = async (event) => {
         location.reload()
     }
 }
+
+const handleAppointmentClick = (username, id) => {
+    window.location.href = `/doc/patientdetails?username=${username}&id=${id}`
+}

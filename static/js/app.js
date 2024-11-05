@@ -8,6 +8,7 @@ const logout = async () => {
         window.location.href = res.url
     }
 }
+
 const dialog=()=>{
     const Fdiv= document.getElementById("dialog")
     const form = document.getElementById("appointment-form")
@@ -126,3 +127,4 @@ document.getElementById("appointment-date").addEventListener("click", () => {
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("appointment-date").setAttribute("min", today);
 })
+

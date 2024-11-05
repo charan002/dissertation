@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
+</head>
+
+<body>
+    <h1>Patient details page</h1>
+    <div>
+        <h1>Current Appointment details</h1>
+        {% for item in data.currentAppointment %}
+        <div class="flex flex-col m-4 border border-black">
+            <p>Date: {{ item.date }}</p>
+            <p>TimeSlot : {{ item.timeSlot }}</p>
+            <p>Status : {{ item.status }}</p>
+            <div>
+                <label>Change Status</label>
+                <select class="" onchange="handleStatusChange(event)">
+                    <option value="TODO">Todo</option>
+                    <option value="INPROGRESS">Inprogress</option>
+                    <option value="DONE">Done</option>
+                </select>
+            </div>
+            <div>
+                <label>Prescription</label>
+                <textarea id="prescription-content" draggable="false" style="resize: none;"></textarea>
+            </div>
+            <div>
+                <button onclick="updatePrescription()" class="">Submit</button>
+            </div>
+        </div>
+        {% endfor %}
+        <h1>Previous Appointments:</h1>
+        <div class="flex">
+            {% for item in data.allUserAppointments %}
+            <div class="border border-black rounded-lg m-2 p-2">
+                <p>Date: {{ item.date }}</p>
+                <p>TimeSlot : {{ item.timeSlot }}</p>
+                <p>Status : {{ item.status }}</p>
+                {% if item.prescription %}
+                <p>Prescription: {{ item.prescription }}</p>
+                {% else %}
+                <p>No Prescriptions</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+<script src="{{ url_for('static', filename='js/doctorPatientDetails.js' ) }}" defer ></script>
+</html>
