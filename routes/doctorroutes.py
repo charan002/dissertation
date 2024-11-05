@@ -107,14 +107,17 @@ def home():
     today = datetime.today().strftime('%Y-%m-%d')
     print(today)
     time_data = list(timeReportCollection.find({'doctorid': session.get('doctorid'), 'date': today}))
+    time_data_future = list(timeReportCollection.find({'doctorid': session.get('doctorid'), 'date': {'$gt': today}}))
     doc_info = collection.find_one({'doctorid': session.get('doctorid')})
     appointment_info = list(appointmentsCollection.find({'doctorid': session.get('doctorid')}))
     for doc in time_data:
         doc['_id'] = str(doc['_id'])
     changeObjectId(appointment_info)
+    changeObjectId(time_data_future)
     data = {
         'doctorid': session.get('doctorid'),
         'timeReporting': time_data,
+        'futureTimeReporting': time_data_future,
         'hospital': doc_info.get('hospitalname'),
         'appointments': appointment_info
     }

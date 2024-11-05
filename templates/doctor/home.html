@@ -26,22 +26,38 @@
         </div>
         <button id="time-report-submit-btn">Submit</button>
     </form>
-    <div>
-        <h1>Your Time reportings for today</h1>
-        {% for report in data.timeReporting %}
-        <div class="border border-black">
-            <p>Date : {{ report.date }}</p>
-            <p>Start Time : {{ report.starttime }}</p>
-            <p>End Time : {{ report.endtime }}</p>
+    <div class="flex ">
+        <div class="m-2">
+            <h1 class="mb-2">Your Time reportings for today</h1>
+            {% for report in data.timeReporting %}
+            <div class="border border-black rounded-lg p-2">
+                <p>Date : {{ report.date }}</p>
+                <p>Start Time : {{ report.starttime }}</p>
+                <p>End Time : {{ report.endtime }}</p>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <div class="m-2">
+            <h1>Your future time reportings</h1>
+            <div class="flex">
+                {% for report in data.futureTimeReporting %}
+                <div class="border border-black rounded-lg m-2 p-2">
+                    <p>Date : {{ report.date }}</p>
+                    <p>Start Time : {{ report.starttime }}</p>
+                    <p>End Time : {{ report.endtime }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <h1>Your Appointments</h1>
     <div class="flex">
         {% for aptmt in data.appointments %}
         <div class="border border-black rounded-lg m-2 p-2">
             <p> Name : {{ aptmt.username }}</p>
+            <p> Date : {{ aptmt.date }} </p>
             <p> Time Slot : {{ aptmt.timeSlot }}</p>
+            <p> Status : {{ aptmt.status }} </p>
         </div>
         {% endfor %}
     </div>
