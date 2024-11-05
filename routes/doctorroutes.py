@@ -6,6 +6,8 @@ from validator import doctor_login_validator, doctor_signup_validator
 
 from datetime import datetime
 
+from bson import ObjectId
+
 doctor_routes = Blueprint('doctor', __name__)
 
 collection = db["doctor"]
@@ -133,6 +135,13 @@ def submit_time_report():
     timeReportCollection.insert_one(data)
     return jsonify({"tjos": "wor"})
 
+@doctor_routes.post('/appointment/changestatus')
+def change_appointment_status():
+    try:
+        appointmentsCollection.update_one({'_id': ObjectId(request.get_json()['id'])}, {'$set': {'status': request.get_json()['statusChange']}})
+        return jsonify({'status': 'success'})
+    except Exception as e:
+        return jsonify({'error': f'{str(e)}'})
 
 @doctor_routes.post('/test')
 def testget():

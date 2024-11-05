@@ -30,3 +30,21 @@ const doctorLogout = async () => {
         window.location.href = res.url
     }
 }
+
+const handleStatusChange = async (event) => {
+    event.preventDefault()
+    const submitChange = await fetch("/doc/appointment/changestatus", {
+        method: "POST",
+        body: JSON.stringify({
+            id: event.target.value,
+            statusChange: "INPROGRESS"
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const response = await submitChange.json()
+    if (response['status'] === "success") {
+        location.reload()
+    }
+}

@@ -58,6 +58,11 @@
             <p> Date : {{ aptmt.date }} </p>
             <p> Time Slot : {{ aptmt.timeSlot }}</p>
             <p> Status : {{ aptmt.status }} </p>
+            {% if aptmt.status == "TODO" %}
+            <button onclick="handleStatusChange(event)" value={{aptmt._id}}>Mark in progress</button>
+            {% elif aptmt.status == "INPROGRESS" %}
+            <button>Give Prescription</button>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
