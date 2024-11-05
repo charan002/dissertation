@@ -4,6 +4,8 @@ from mongoclient import db
 
 from validator import doctor_login_validator, doctor_signup_validator
 
+from datetime import datetime
+
 doctor_routes = Blueprint('doctor', __name__)
 
 collection = db["doctor"]
@@ -102,7 +104,9 @@ def user_logout():
 
 @doctor_routes.route('/')
 def home():
-    time_data = list(timeReportCollection.find({'doctorid': session.get('doctorid')}))
+    today = datetime.today().strftime('%Y-%m-%d')
+    print(today)
+    time_data = list(timeReportCollection.find({'doctorid': session.get('doctorid'), 'date': today}))
     doc_info = collection.find_one({'doctorid': session.get('doctorid')})
     appointment_info = list(appointmentsCollection.find({'doctorid': session.get('doctorid')}))
     for doc in time_data:

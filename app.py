@@ -1,3 +1,4 @@
+
 from flask import Flask
 
 from routes.doctorroutes import doctor_routes
@@ -12,7 +13,7 @@ To run app - flask run --debug
 To configure tailwind CSS 
 1.npm install -D tailwindcss
 2.npx tailwindcss init
-3. npx tailwindcss -i ./static/styles/style.css -o ./static/styles/output.css --watch
+3.npx tailwindcss -i ./static/styles/style.css -o ./static/styles/output.css --watch
 
 '''
 

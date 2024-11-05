@@ -65,11 +65,11 @@
                     {% for item in data.appointments %}
                         <div class="input-box p-1">
                             <p>Hospital Name:{{ item.hospitalname }}</p>
-                            <p>Doctor Name:{{ item.doctorname }}</p>
+                            <p>Doctor Name:{{ item.doctorName }}</p>
                             <p>Time:{{ item.timeSlot }}</p>
                             <p>Status:{{ item.status }}</p>
-                            <p>Date:</p>
-                            <p>Dept:</p>
+                            <p>Date:{{ item.date }}</p>
+                            <p>Dept:{{ item.doctortype }}</p>
                         </div>
                     {% endfor %}
                 {% else %}

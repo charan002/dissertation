@@ -41,7 +41,7 @@ const getTimeSlots = (data) => {
     
     let slotHTML = ''
     times.forEach((item) => {
-        slotHTML += `<button onclick="handleSlotBooking(event)" value="${item}-${data["doctorid"]}-${data["hospitalname"]}-${data['firstname']}-${data['lastname']}" id="selected-slot" class="ml-2 border border-black rounded-md">
+        slotHTML += `<button onclick="handleSlotBooking(event)" value="${item}-${data["doctorid"]}-${data["hospitalname"]}-${data['firstname']}-${data['lastname']}-${data['date']}-${data["doctortype"]}" id="selected-slot" class="ml-2 border border-black rounded-md">
             ${item}
         </button>`
     })
@@ -57,7 +57,9 @@ const handleSlotBooking = (event) => {
             <h1>Hospital : ${data[3]}</h1>
             <h1>Doctor Name : ${data[4]} ${data[5]}</h1>
             <h1>Time slot : ${data[0]} - ${data[1]}</h1>
-            <button onclick="sendRequestForAppointment(event)" value="${data[0]}-${data[1]}-${data[2]}-${data[3]}-${data[4]}-${data[5]}">Submit</button>
+            <h1>Date : ${data[6]+"-"+data[7]+"-"+data[8]}</h1>
+            <h1>Doctor Type : ${data[9]}</h1>
+            <button onclick="sendRequestForAppointment(event)" value="${event.target.value}">Submit</button>
         </div>
     `
 }
@@ -71,7 +73,10 @@ const sendRequestForAppointment = async (event) => {
             doctorid: data[2],
             hospitalname: data[3],
             timeSlot: data[0]+"-"+data[1],
-            doctorName: data[4]+" "+data[5]
+            doctorName: data[4]+" "+data[5],
+            status: "TODO",
+            date: data[6]+"-"+data[7]+"-"+data[8],
+            doctortype: data[9]
         }),
         headers: {
             "Content-Type": "application/json"
@@ -80,6 +85,7 @@ const sendRequestForAppointment = async (event) => {
     const jsonResponse = await response.json()
     if (jsonResponse["status"] === "success") {
         console.log("success")
+        location.reload()
     }
 }
 
@@ -93,7 +99,7 @@ document.getElementById("search-submit").addEventListener("click", async (event)
         }
     })
     const jsonResponse = await response.json()
-    let searchHTML = ""
+    let searchHTML = `<h1>Selected Date - ${formData.get("date")}</h1>`
     jsonResponse.forEach((item) => {
         searchHTML += `<div>
             <p>${item.hospitalname} Hospital - ${item.firstname} Doctor</p>
