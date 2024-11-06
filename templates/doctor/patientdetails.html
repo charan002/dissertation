@@ -17,20 +17,27 @@
             <p>Date: {{ item.date }}</p>
             <p>TimeSlot : {{ item.timeSlot }}</p>
             <p>Status : {{ item.status }}</p>
+            {% if item.status != "DONE" %}
             <div>
                 <label>Change Status</label>
-                <select class="" onchange="handleStatusChange(event)">
+                <select id="status-dropdown" class="" onchange="handleStatusChange(event)">
+                    <option disabled selected>Select</option>
                     <option value="TODO">Todo</option>
                     <option value="INPROGRESS">Inprogress</option>
                     <option value="DONE">Done</option>
                 </select>
             </div>
+            {% endif %}
+            {% if not item.prescription %}
             <div>
                 <label>Prescription</label>
                 <textarea id="prescription-content" draggable="false" style="resize: none;"></textarea>
             </div>
+            {% endif %}
             <div>
+                {% if item.status != "DONE" %}
                 <button onclick="updatePrescription()" class="">Submit</button>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

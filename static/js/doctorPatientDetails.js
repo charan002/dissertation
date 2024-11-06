@@ -32,3 +32,15 @@ const updatePrescription = async () => {
         }
     })
 }
+
+const textInput = document.getElementById('prescription');
+const dropdown = document.getElementById('status-dropdown');
+
+textInput.addEventListener('input', () => {
+    if (textInput.value.trim() !== "") {
+        dropdown.disabled = false;
+    } else {
+        dropdown.disabled = true;
+    }
+});
+
