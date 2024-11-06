@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Patient Details</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
 
 <body>
     <h1>Patient details page</h1>
+    <br>
     <div>
         <h1>Current Appointment details</h1>
         {% for item in data.currentAppointment %}
