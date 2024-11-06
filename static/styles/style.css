@@ -10,6 +10,10 @@
     @apply border border-black rounded-md;
 }
 
+* {
+    transition: 0.5s;
+}
+
 #header {
     background-color: #D2E0FB;
     color: black;
