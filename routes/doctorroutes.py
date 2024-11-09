@@ -112,6 +112,9 @@ def home():
     time_data_future = list(timeReportCollection.find({'doctorid': session.get('doctorid'), 'date': {'$gt': today}}))
     doc_info = collection.find_one({'doctorid': session.get('doctorid')})
     appointment_info = list(appointmentsCollection.find({'doctorid': session.get('doctorid')}))
+    for item in appointment_info:
+        date_obj = datetime.strptime(item['date'], '%Y-%m-%d')
+        item['displayDate'] = date_obj.strftime("%Y-%b-%d")
     for doc in time_data:
         doc['_id'] = str(doc['_id'])
     changeObjectId(appointment_info)
