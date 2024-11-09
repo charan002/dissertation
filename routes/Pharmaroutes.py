@@ -101,8 +101,10 @@ def user_logout():
     
 @pharma_routes.route('/')
 def home():
+    pharmacyDetails = list(collection.find({'pharmaid': session.get('pharmaid')}))
     data = {
         'pharmaid': session.get('pharmaid'),
+        'pharmacyname': pharmacyDetails[0].get("pharmacyname")
     }
     return render_template('pharma/home.html', data=data)
 

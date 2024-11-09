@@ -25,7 +25,7 @@ const handleUserPrescription = async (event) => {
     })
     const jsObj = await response.json()
     console.log(jsObj)
-    prescriptionHTML = "<p class='text-2xl' >Prescription Details</p> <br>"
+    prescriptionHTML = ""
     jsObj.forEach(ele => {
         prescriptionHTML += `
             <div>

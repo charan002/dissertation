@@ -17,7 +17,7 @@
         <form method="post" action="/pharma/register">
             <div class="py-1">
                 <label for="pharmaid">Pharmacist Id</label>
-                <input type="number" min="10000" max="99999" title="enter value between 3 and 10" class="input-box" name="pharmaid" required/><br/>
+                <input type="text" minlength="2" maxlength="10" title="enter value between 3 and 10" class="input-box" name="pharmaid" required/><br/>
             </div>
             <div class="py-1">
                 <label for="firstname">First Name</label>
@@ -40,12 +40,12 @@
                 <input type="text" minlength="2" maxlength="10" class="input-box" name="password" required/><br/>
             </div>
             <br>
-            <button class="input-box" type="submit">Submit</button>
+            <button class="rounded-3xl" type="submit">Submit</button>
         </form>
         <br>
         <hr>
         <p class="py-1">Already have an account?</p>
-        <button class="input-box"><a href="/pharma/login">Login</a></button>
+        <button class="rounded-3xl"><a href="/pharma/login">Login</a></button>
     </main>
     <footer>
         <p>Copyright © #Gov. #of #India</p>
