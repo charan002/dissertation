@@ -6,68 +6,113 @@
     <title>Doctor Homepage</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
-<body>
-    <h1>Welcome {{ data.doctorid }} </h1>
-    <h1>Working at: {{ data.hospital }}</h1>
-    <button onclick="doctorLogout()" class="btn-primary">Logout</button>
-    <form id="time-report-form">
-        <h1>Add time reporting</h1>
-        <div>
-            <label for="date">Date</label>
-            <input name="date" id="date-report" type="date"/>
-        </div>
-        <div>
-            <label for="starttime">Start time</label>
-            <input name="starttime" id="time-report" type="time" />
-        </div>
-        <div>
-            <label for="endtime">End time</label>
-            <input name="endtime" id="time-report" type="time" />
-        </div>
-        <button id="time-report-submit-btn">Submit</button>
-    </form>
-    <div class="flex ">
-        <div class="m-2">
-            <h1 class="mb-2">Your Time reportings for today</h1>
-            {% for report in data.timeReporting %}
-            <div class="border border-black rounded-lg p-2">
-                <p>Date : {{ report.date }}</p>
-                <p>Start Time : {{ report.starttime }}</p>
-                <p>End Time : {{ report.endtime }}</p>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="m-2">
-            <h1>Your future time reportings</h1>
-            <div class="flex">
-                {% for report in data.futureTimeReporting %}
-                <div class="border border-black rounded-lg m-2 p-2">
-                    <p>Date : {{ report.date }}</p>
-                    <p>Start Time : {{ report.starttime }}</p>
-                    <p>End Time : {{ report.endtime }}</p>
+<body class="overflow-x-hidden">
+    <div class="grid grid-cols-[20%_80%] w-screen">
+        <div class="bg-[#D2E0FB] flex flex-col">
+            <div class="absolute top-8 left-5 text-3xl font-bold italic">Dissertation</div>
+            <div class="flex flex-col mt-24 p-4">
+                <div class="flex items-start ">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                        class="mr-2" fill="#434343">
+                        <path
+                            d="M248-250q55-37 110-58.5T480-330q67 0 122 21.5T712-250q43-45 68.5-103.09Q806-411.17 806-480q0-136-95-231t-231-95q-136 0-231 95t-95 231q0 68.83 25.5 126.91Q205-295 248-250Zm231.73-219q-47.73 0-80.23-32.77-32.5-32.76-32.5-80.5 0-47.73 32.77-80.23 32.76-32.5 80.5-32.5 47.73 0 80.23 32.77 32.5 32.76 32.5 80.5 0 47.73-32.77 80.23-32.76 32.5-80.5 32.5Zm.74 337q-73.47 0-136.68-27-63.22-27-110.5-74.5Q186-281 159-343.77q-27-62.76-27-136Q132-553 159-616q27-63 74.5-110.5T343.77-801q62.76-27 136-27Q553-828 616-801q63 27 110.5 74.5T801-615.97q27 63.03 27 135.5 0 73.47-27 136.68-27 63.22-74.5 110.5Q679-186 615.97-159q-63.03 27-135.5 27Zm-.47-22q57 0 114-20.5T694-234q-43-34-97.5-54T480-308q-62 0-117 19.5T267-234q42 39 99 59.5T480-154Zm.14-337Q519-491 545-517.14t26-65Q571-621 544.86-647t-65-26Q441-673 415-646.86t-26 65Q389-543 415.14-517t65 26Zm-.14-91Zm0 351Z" />
+                    </svg>
+                    <div>
+                        <h1 class="text-left font-thin text-3xl">Welcome {{ data.doctorid }}!</h1>
+                        <p class="text-sm font-extralight text-left mt-2">Doctor</p>
+                        <p class="text-sm font-extralight text-left mt-2">Location: {{ data.hospital }}</p>
+                    </div>
                 </div>
-                {% endfor %}
+            </div>
+            <div>
+                <form id="time-report-form">
+                    <div class="border border-black rounded-lg m-2 py-2 bg-white">
+                    
+                        <h1>Add Reporting Time</h1>
+                        <br>
+                        <div>
+                            <label for="date">Date</label>
+                            <input class="input-box" name="date" id="date-report" type="date"/>
+                        </div>
+                        <div>
+                            <label for="starttime">Start time</label>
+                            <input class="input-box" name="starttime" id="time-report" type="time" />
+                        </div>
+                        <div> </div>
+                        <div>
+                            <label for="endtime">End time</label>
+                            <input class="input-box" name="endtime" id="time-report" type="time" />
+                        </div>
+                        <br>
+                        <button class=" rounded-3xl" id="time-report-submit-btn">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
+        <main class="rounded-3xl">
+            <header class="flex justify-between " id="header">
+                <div></div>
+                <div class="flex flex-row-reverse m-2">
+                <button onclick="doctorLogout()" class="w-full rounded-3xl">Logout</button>
+                </div>
+            </header>
+            <div class="rounded-3xl p-4 overflow-hidden border border-black flex flex-col">
+                
+                
+                
+                
+                <h1 class="text-2xl">Your Appointments</h1>
+                <div class="flex justify-evenly">
+                    {% for aptmt in data.appointments %}
+                    <div class="border border-black rounded-lg m-2 p-2 bg-white" onclick="handleAppointmentClick('{{aptmt.username}}', '{{aptmt._id}}')">
+                        <p> Patient Name : {{ aptmt.username }}</p>
+                        <p> Date : {{ aptmt.date }} </p>
+                        <p> Time Slot : {{ aptmt.timeSlot }}</p>
+                        <p> Appointment Status : {{ aptmt.status }} </p>
+                        {% if aptmt.status == "TODO" %}
+                        <button class=" rounded-3xl" onclick="handleStatusChange(event)" value={{aptmt._id}}>Mark in progress</button>
+                        {% elif aptmt.status == "INPROGRESS" %}
+                        <button>Give Prescription</button>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <br>
+                <hr>
+                <br>
+                <div class="flex justify-evenly">
+                    <div class="m-2">
+                        <h1 class="mb-2 text-2xl">Today's Reporting Time</h1>
+                        {% for report in data.timeReporting %}
+                        <div class="border border-black rounded-lg p-2 bg-white">
+                            <p>Date : {{ report.date }}</p>
+                            <p>Start Time : {{ report.starttime }}</p>
+                            <p>End Time : {{ report.endtime }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="m-2">
+                        <h1 class="mb-2 text-2xl">Scheduled Reporting Time</h1>
+                        {% for report in data.futureTimeReporting %}
+                        <div class="border border-black rounded-lg p-2 bg-white">
+                            <p>Date : {{ report.date }}</p>
+                            <p>Start Time : {{ report.starttime }}</p>
+                            <p>End Time : {{ report.endtime }}</p>
+                        </div>
+                        <br>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+            </div>
+            <div id="prescription-dialog" class="">
+            </div>
+        </main>
     </div>
-    <h1>Your Appointments</h1>
-    <div class="flex">
-        {% for aptmt in data.appointments %}
-        <div class="border border-black rounded-lg m-2 p-2" onclick="handleAppointmentClick('{{aptmt.username}}', '{{aptmt._id}}')">
-            <p> Patient Name : {{ aptmt.username }}</p>
-            <p> Date : {{ aptmt.date }} </p>
-            <p> Time Slot : {{ aptmt.timeSlot }}</p>
-            <p> Appointment Status : {{ aptmt.status }} </p>
-            {% if aptmt.status == "TODO" %}
-            <button onclick="handleStatusChange(event)" value={{aptmt._id}}>Mark in progress</button>
-            {% elif aptmt.status == "INPROGRESS" %}
-            <button>Give Prescription</button>
-            {% endif %}
-        </div>
-        {% endfor %}
-    </div>
-    <div id="prescription-dialog" class="">
-    </div>
+    <footer>
+        <p>Copyright © #Gov. #of #India</p>
+    </footer>
 </body>
 <script src="{{ url_for('static', filename='js/doctorHome.js' ) }}" defer ></script>
 </html>
