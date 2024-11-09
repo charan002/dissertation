@@ -156,7 +156,12 @@ def render_patient_details():
         'currentAppointment': appointment_data,
         'allUserAppointments': user_appointments
     }
+    for item in user_appointments:
+        date_obj = datetime.strptime(item['date'], '%Y-%m-%d')
+        item['displayDate'] = date_obj.strftime("%Y-%b-%d")
     print(data)
+    changeObjectId(data['currentAppointment'])
+    changeObjectId(data['allUserAppointments'])
     return render_template('/doctor/patientdetails.html', data=data)
 
 @doctor_routes.post('/submit/prescription')
