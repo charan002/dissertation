@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Blueprint, jsonify, request, render_template, jsonify, session, redirect
 
 from validator import signup_validator, login_validator
@@ -102,11 +103,24 @@ def user_logout():
     
 @user_routes.route('/')
 def home():
-    appointments = list(appointments_collection.find({'username': session.get('username')}))
+    today = datetime.today().strftime('%Y-%m-%d')
+    appointments = list(appointments_collection.find({'$and': [
+            {'username': session.get('username')},
+            {'date': {'$ne': today}}
+        ]}))
     changeObjectId(appointments)
+    todayAppointments = list(appointments_collection.find({'date': today}))
+    changeObjectId(todayAppointments)
+    for item in appointments:
+        date_obj = datetime.strptime(item['date'], '%Y-%m-%d')
+        item['date'] = date_obj.strftime("%Y-%b-%d")
+    for item in todayAppointments:
+        date_obj = datetime.strptime(item['date'], '%Y-%m-%d')
+        item['date'] = date_obj.strftime("%Y-%b-%d")
     data = {
         'username': session.get('username'),
-        'appointments': appointments
+        'appointments': appointments,
+        'todayAppointments': todayAppointments
     }
     return render_template('home.html', data=data)
     
