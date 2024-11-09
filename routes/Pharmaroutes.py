@@ -114,7 +114,10 @@ def get_prescriptions():
     doc = list(user_collection.find({'phonenumber': data.get('phoneNumber')}))
     #print(doc[0].get('phonenumber'))
     #print(doc[0].get('username'))
-    aptmts = list(appointments_collection.find({'username': doc[0].get('username')}))
+    aptmts = list(appointments_collection.find({'$and': [
+            {'username': doc[0].get('username')},
+            {'status': "DONE"}
+        ]}))
     #print(aptmts)
     for items in aptmts:
         print(items.get('prescription', 'Prescription not found'))
