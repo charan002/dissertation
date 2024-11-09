@@ -7,15 +7,59 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
 <body>
-    <h1>Welcome {{ data.pharmaid }} </h1>
-    <button onclick="logout()" class="btn-primary">Logout</button>
+    <header id="header">
+        <h1>Welcome {{ data.pharmaid }} </h1>
+        <button onclick="logout()" class="btn-primary">Logout</button>
+    </header>
     <main>
         <p>Test</p>
+        <br>
+        <form id="phone-number-form" class="border-black" >
+            <div class="py-1">
+                <label for="phonenumber">Patient Phone Number</label>
+                <input type="number" class="input-box" name="phonenumber" />
+            </div>
+            <br>
+            <button onclick="handleUserPrescription(event)" class="input-box" type="submit">Submit</button>        
+            </form>
+        <div id="user-prescriptions">
+
+        </div>
     </main>
     <footer>
         <p>Copyright © #Gov. #of #India</p>
     </footer>
 </body>
-<script src="{{ url_for('static', filename='js/app.js' ) }}" defer ></script>
+<script src="{{ url_for('static', filename='js/pharmaPrescription.js' ) }}" defer ></script>
 
 </html>
+
+
+
+<!--    <br>
+        <form method="post" class="border-black" >
+            <div class="py-1">
+                <label for="phonenumber">Patient Phone Number</label>
+                <input class="input-box" name="phonenumber" />
+            </div>
+            <br>
+            <button class="input-box" type="submit">Submit</button>   
+        </form>   
+        {% if data.get('phonenumber') == data.phonenumber %}
+        <div class="py-10">
+            <p class="text-3xl"> {{ data.username }}'s Prescriptions</p>
+            <br>
+            <div class="flex flex-row gap-4 " id="userHomeApptn">
+                {% if data.appointments %}
+                {% for item in data.appointments %}
+                <div class="input-box p-1">
+                    <p>Doctor Name:{{ item.doctorName }}</p>
+                    <p>Prescription:{{ item.prescription }}</p>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>No new Prescriptions</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %} --> 

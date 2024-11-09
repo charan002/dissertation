@@ -5,6 +5,11 @@ from mongoclient import db
 pharma_routes = Blueprint('pharma', __name__)
 
 collection = db["pharma"]
+user_collection = db["user"]
+appointments_collection = db["appointments"]
+
+#def prescriptions(data):
+ #   if data.get('phonenumber')
 
 def isPharmaAuthenticated():
     if session.get('pharmaid') != None and collection.find_one({'pharmaid': session.get('pharmaid')}) != None:
@@ -17,6 +22,7 @@ def identifyTypeOfUser():
 def changeObjectId(data):
     for item in data:
         item['_id'] = str(item['_id'])
+
 
 @pharma_routes.before_request
 def isAuthenticated():
@@ -83,6 +89,7 @@ def user_signup():
 @pharma_routes.route('/logout')
 def user_logout():
     try:
+        print(session.items())
         if(session.get('pharmaid')!= None):
             session.pop('pharmaid')
             session.pop('usertype')
@@ -98,4 +105,19 @@ def home():
         'pharmaid': session.get('pharmaid'),
     }
     return render_template('pharma/home.html', data=data)
+
+@pharma_routes.post('/getPrescriptions')
+def get_prescriptions():
+    data = request.get_json()
+    #print(data)
+    #print(data.get('phoneNumber'))
+    doc = list(user_collection.find({'phonenumber': data.get('phoneNumber')}))
+    #print(doc[0].get('phonenumber'))
+    #print(doc[0].get('username'))
+    aptmts = list(appointments_collection.find({'username': doc[0].get('username')}))
+    #print(aptmts)
+    for items in aptmts:
+        print(items.get('prescription', 'Prescription not found'))
+    changeObjectId(aptmts)
+    return jsonify(aptmts)
 
