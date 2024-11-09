@@ -6,26 +6,54 @@
     <title>Pharma Homepage</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
 </head>
-<body>
-    <header id="header">
-        <h1>Welcome {{ data.pharmaid }} </h1>
-        <button onclick="logout()" class="btn-primary">Logout</button>
-    </header>
-    <main>
-        <p>Test</p>
-        <br>
-        <form id="phone-number-form" class="border-black" >
-            <div class="py-1">
-                <label for="phonenumber">Patient Phone Number</label>
-                <input type="number" class="input-box" name="phonenumber" />
+<body class="overflow-x-hidden">
+    <div class="grid grid-cols-[20%_80%] w-screen">
+        <div class="bg-[#D2E0FB] flex flex-col">
+            <div class="absolute top-8 left-5 text-3xl font-bold italic">Dissertation</div>
+            <div class="flex flex-col mt-24 p-4">
+                <div class="flex items-start ">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                        class="mr-2" fill="#434343">
+                        <path
+                            d="M248-250q55-37 110-58.5T480-330q67 0 122 21.5T712-250q43-45 68.5-103.09Q806-411.17 806-480q0-136-95-231t-231-95q-136 0-231 95t-95 231q0 68.83 25.5 126.91Q205-295 248-250Zm231.73-219q-47.73 0-80.23-32.77-32.5-32.76-32.5-80.5 0-47.73 32.77-80.23 32.76-32.5 80.5-32.5 47.73 0 80.23 32.77 32.5 32.76 32.5 80.5 0 47.73-32.77 80.23-32.76 32.5-80.5 32.5Zm.74 337q-73.47 0-136.68-27-63.22-27-110.5-74.5Q186-281 159-343.77q-27-62.76-27-136Q132-553 159-616q27-63 74.5-110.5T343.77-801q62.76-27 136-27Q553-828 616-801q63 27 110.5 74.5T801-615.97q27 63.03 27 135.5 0 73.47-27 136.68-27 63.22-74.5 110.5Q679-186 615.97-159q-63.03 27-135.5 27Zm-.47-22q57 0 114-20.5T694-234q-43-34-97.5-54T480-308q-62 0-117 19.5T267-234q42 39 99 59.5T480-154Zm.14-337Q519-491 545-517.14t26-65Q571-621 544.86-647t-65-26Q441-673 415-646.86t-26 65Q389-543 415.14-517t65 26Zm-.14-91Zm0 351Z" />
+                    </svg>
+                    <div>
+                        <h1 class="text-left font-thin text-3xl">Welcome {{ data.pharmaid }}!</h1>
+                        <p class="text-sm font-extralight text-left mt-2">Pharmacist</p>
+                        <p class="text-sm font-extralight text-left mt-2">Pharmacy: {{ data.pharmacyname }}</p>
+                    </div>
+                </div>
             </div>
-            <br>
-            <button onclick="handleUserPrescription(event)" class="input-box" type="submit">Submit</button>        
-            </form>
-        <div id="user-prescriptions">
+            <div>
+                <form id="phone-number-form" class="border-black" >
+                    <div class="border border-black rounded-lg m-2 py-2 bg-white">
+                        <div class="py-1">
+                            <label for="phonenumber">Patient Phone Number</label>
+                            <input type="number" class="input-box " name="phonenumber" />
+                        </div>
+                        <br>
+                        <button onclick="handleUserPrescription(event)" class="input-box" type="submit">Submit</button>        
+                    </div>
+                </form>
 
+            </div>
         </div>
-    </main>
+        <main class="rounded-3xl">
+            <header class="flex justify-between " id="header">
+                <div></div>
+                <div class="flex flex-row-reverse m-2">
+                    <button onclick="logout()" class="w-full rounded-3xl">Logout</button>
+                </div>
+            </header>
+            <div class="rounded-3xl px-4 pb-80 pt-4 overflow-hidden border border-black flex flex-col">
+                <div id="user-prescriptions">
+                        
+                </div>
+            </div>
+        </main>
+    </div>
+    
+   
     <footer>
         <p>Copyright © #Gov. #of #India</p>
     </footer>

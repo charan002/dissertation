@@ -25,11 +25,14 @@ const handleUserPrescription = async (event) => {
     })
     const jsObj = await response.json()
     console.log(jsObj)
-    prescriptionHTML = ""
+    prescriptionHTML = "<p class='text-2xl' >Prescription Details</p> <br>"
     jsObj.forEach(ele => {
         prescriptionHTML += `
             <div>
+                ${ele['date']}  
+                -
                 ${ele['prescription']}
+                <br>
             </div>
         `
     })

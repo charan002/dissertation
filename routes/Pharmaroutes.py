@@ -121,6 +121,7 @@ def get_prescriptions():
     #print(aptmts)
     for items in aptmts:
         print(items.get('prescription', 'Prescription not found'))
+        print(items.get('date'))
     changeObjectId(aptmts)
     return jsonify(aptmts)
 
