@@ -50,7 +50,8 @@
     </div>
     <div class="grid grid-cols-[20%_80%] w-screen">
         <div class="bg-[#D2E0FB] flex flex-col">
-            <div class="flex flex-col mt-20 p-4">
+            <div class="absolute top-8 left-5 text-3xl font-bold italic">Dissertation</div>
+            <div class="flex flex-col mt-24 p-4">
                 <div class="flex items-start ">
                     <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
                         class="mr-2" fill="#434343">
@@ -78,11 +79,10 @@
             </div>
         </div>
         <main class="rounded-3xl">
-            <header id="header">
-                <div class="flex justify-end">
-                    <div class="m-2">
-                        <button onclick="logout()" class="w-full rounded-3xl">Logout</button>
-                    </div>
+            <header class="flex justify-between " id="header">
+                <div></div>
+                <div class="flex flex-row-reverse m-2">
+                    <button onclick="logout()" class="w-full rounded-3xl">Logout</button>
                 </div>
             </header>
             <div class="rounded-3xl p-4 overflow-hidden border border-black flex flex-col">
@@ -138,6 +138,8 @@
                         {% endif %}
                     </div>
                 </div>
+                <hr>
+                <br>
                 <div class="">
                     <p class="text-2xl">Other Appointments</p>
                     <br>
