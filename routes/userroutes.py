@@ -109,7 +109,11 @@ def home():
             {'date': {'$ne': today}}
         ]}))
     changeObjectId(appointments)
-    todayAppointments = list(appointments_collection.find({'date': today}))
+    todayAppointments = list(appointments_collection.find({'$and': [
+        {'date': today},
+        {'username': session.get('username')}
+    ]}))
+    print(todayAppointments)
     changeObjectId(todayAppointments)
     for item in appointments:
         date_obj = datetime.strptime(item['date'], '%Y-%m-%d')
