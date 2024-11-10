@@ -65,6 +65,10 @@ def doctor_login():
         except Exception as e:
             return jsonify({'error': f'generic error {str(e)}'})
         
+# @doctor_routes.route('/doc/ptientdetails') #, methods=['GET', 'POST'])
+# def doctor_back_home():
+#     return redirect('/doc/')
+        
 @doctor_routes.route('/register', methods=['GET', 'POST'])
 def user_signup():
     if request.method == 'GET':
@@ -182,3 +186,4 @@ def submit_prescription():
 def testget():
     return jsonify({"this": "works"})
     
+
