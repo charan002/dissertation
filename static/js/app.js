@@ -39,13 +39,21 @@ function compareTimes(time1, time2) {
     }
 }
 
-const checkTime = (item) => {
+const checkTime = (item, date) => {
     const now = new Date();
+    const inputDate = new Date(date)
+
+    now.setHours(0,0,0,0)
+    inputDate.setHours(0,0,0,0)
+
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const time = `${hours}:${minutes}`;
-    console.log(compareTimes(time, item), time, item.split("-")[0])
-    if (compareTimes(time, item.split("-")[0]) <= 0) {
+    console.log(compareTimes(time, item), time, item.split("-")[0], date)
+    if (inputDate > now) {
+        return false
+    }
+    if (compareTimes(time, item.split("-")[0], date) <= 0) {
         return true
     }
 }
@@ -68,7 +76,7 @@ const getTimeSlots = (data) => {
     let slotHTML = ''
     times.forEach((item) => {
         slotHTML += `
-        <option  ${checkTime(item) ? "disabled" : ""}>
+        <option  ${checkTime(item, data["date"]) ? "disabled" : ""}>
             ${item}
         </option>`
     })
