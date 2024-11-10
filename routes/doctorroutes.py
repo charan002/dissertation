@@ -171,12 +171,14 @@ def render_patient_details():
     changeObjectId(data['allUserAppointments'])
     return render_template('/doctor/patientdetails.html', data=data)
 
-@doctor_routes.post('/submit/prescription')
+@doctor_routes.post('/submit/prescriptionAndRemarks')
 def submit_prescription():
     try:
         id = request.get_json()['id']
-        print(id, request.get_json()['prescription'])
-        appointmentsCollection.update_one({'_id': ObjectId(id)}, {'$set': {'prescription': request.get_json()['prescription']}})
+        appointmentsCollection.update_one({'_id': ObjectId(id)}, {'$set': {
+            'prescription': request.get_json()['prescription'],
+            'remarks': request.get_json()['remarks']
+            }})
         return jsonify({"status": "success"})
     except Exception as e:
         return jsonify({'error': f'{str(e)}'})

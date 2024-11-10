@@ -18,7 +18,8 @@
                     <div class="flex flex-col">
                         {% for item in data.allUserAppointments %}
                         <div class="bg-gray-100 m-1 rounded-3xl p-2">
-                            <div data-mydata='{{item | tojson}}' onclick="handleAppointmentChange(event)" class="hover:cursor-pointer ">
+                            <div data-mydata='{{item | tojson}}' onclick="handleAppointmentChange(event)"
+                                class="hover:cursor-pointer ">
                                 {% set date_parts = item.displayDate.split("-") %}
                                 <div class="grid grid-cols-[45%_50%_5%]">
                                     <div class="place-self-end flex gap-2">
@@ -42,8 +43,8 @@
                         {% endfor %}
                     </div>
                 </div>
-            </div>  
-             
+            </div>
+
         </div>
         <main class="rounded-3xl">
             <header class="flex justify-between " id="header">
@@ -84,7 +85,8 @@
                                 </svg>
                                 <p id="apptmt-status" class="place-self-start">{{ item.status }}</p>
                             </div>
-                            <div id="apptmt-status-change" class="grid grid-cols-[45%_55%] items-center justify-center mb-2">
+                            <div id="apptmt-status-change"
+                                class="grid grid-cols-[45%_55%] items-center justify-center mb-2">
                                 {% if item.status != "DONE" %}
                                 <label class="place-self-end self-center mr-4">Change Status</label>
                                 <select id="status-dropdown" class="border border-black rounded-3xl h-10 px-4"
@@ -96,17 +98,32 @@
                                 </select>
                                 {% endif %}
                             </div>
+                            <br>
+                            <hr>
+                            <br>
+                            <div id="apptmt-remarks" class="grid mb-2">
+                                {% if item.status == "INPROGRESS" %}
+                                <label class="self-center text-2xl">Enter Remarks</label>
+                                <br>
+                                <textarea class="border h-24 border-black rounded-3xl p-4" id="remarks-content"
+                                    draggable="false"
+                                    style="resize: none;">{% if item.remarks %}{{ item.remarks }}{% endif %}</textarea>
+                                {% endif %}
+                                {% if item.status == "DONE" %}
+                                <label class=" self-center text-2xl">Prescription</label>
+                                <br/>
+                                <textarea class="border h-24 border-black rounded-3xl p-4" id="remarks-content-disabled"
+                                    draggable="false" disabled style="resize: none;">{{item.remarks}}
+                                </textarea>
+                                {% endif %}
+                            </div>
                             <div id="apptmt-prescription" class="grid  mb-2">
                                 {% if item.status == "INPROGRESS" %}
-                                <br>
-                                <hr>
-                                <br>
                                 <label class=" self-center text-2xl">Prescribe below</label>
                                 <br>
                                 <textarea class="border h-24 border-black rounded-3xl p-4" id="prescription-content"
                                     draggable="false"
-                                    style="resize: none;">{% if item.prescription %}{{ item.prescription }}{% endif %}
-                                </textarea>
+                                    style="resize: none;">{% if item.prescription %}{{ item.prescription }}{% endif %}</textarea>
                                 {% endif %}
                                 {% if item.status == "DONE" %}
                                 <br>
@@ -114,14 +131,18 @@
                                 <br>
                                 <label class=" self-center text-2xl">Prescription</label>
                                 <br>
-                                <textarea class="border h-24 border-black rounded-3xl p-4" id="prescription-content"
+                                <textarea class="border h-24 border-black rounded-3xl p-4" id="prescription-content-disabled"
                                     draggable="false" disabled style="resize: none;">{{item.prescription}}
                                 </textarea>
                                 {% endif %}
                             </div>
+                            <div class="text-center\">
+                                <p class="hidden" id="update-success-message">Updated Successfully</p>
+                                <p class="hidden" id="update-failure-message">Update failed. Please try again after some time</p>
+                            </div>
                             <div class="mt-6" id="prescription-div">
                                 {% if item.status != "DONE" %}
-                                <button data-mydata='{{ item | tojson }}' onclick="updatePrescription(event)"
+                                <button data-mydata='{{ item | tojson }}' onclick="updatePrescriptionAndRemarks(event)"
                                     id="prescription-submit-btn" class="border rounded-3xl">Submit</button>
                                 {% endif %}
                             </div>
@@ -129,7 +150,7 @@
                     </div>
                     {% endfor %}
                 </div>
-            </div> 
+            </div>
         </main>
     </div>
     <footer>

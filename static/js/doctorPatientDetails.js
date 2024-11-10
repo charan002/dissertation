@@ -17,15 +17,17 @@ const handleStatusChange = async (event) => {
     }
 }
 
-const updatePrescription = async (event) => {
-    const data = document.getElementById("prescription-content").value
+const updatePrescriptionAndRemarks = async (event) => {
+    const remarks = document.getElementById("remarks-content").value
+    const prescription = document.getElementById("prescription-content").value
     console.log(event.target.getAttribute("data-mydata"))
     const id = JSON.parse(event.target.getAttribute("data-mydata"))["_id"]
-    const response = await fetch("/doc/submit/prescription", {
+    const response = await fetch("/doc/submit/prescriptionAndRemarks", {
         method: "POST",
         body: JSON.stringify({
             id: id,
-            prescription: data
+            prescription: prescription,
+            remarks: remarks
         }),
         headers: {
             "Content-Type": "application/json"
@@ -33,7 +35,11 @@ const updatePrescription = async (event) => {
     })
     const jsonResponse = await response.json()
     if (jsonResponse["status"] == "success") {
-        document.getElementById(`prescription-submit-btn`).classList.toggle("hidden")
+        document.getElementById(`update-success-message`).classList.remove("hidden")
+        document.getElementById(`update-failure-message`).classList.add("hidden")
+    } else {
+        document.getElementById("update-failure-message").classList.remove("hidden")
+        document.getElementById("update-success-message").classList.add("hidden")
     }
 }
 
@@ -42,13 +48,13 @@ const insertEnabledPrescriptionIfStatusInProgress = (data) => {
         document.getElementById("apptmt-prescription").innerHTML = `
             <label class="place-self-end self-center mr-4">Prescription</label>
             <textarea class="border h-24 border-black rounded-3xl p-4" id="prescription-content"
-                draggable="false" style="resize: none;">${data["prescription"]}</textarea>
+                draggable="false" style="resize: none;">${data["prescription"] ? data["prescription"] : ""}</textarea>
         `
     } else if (data['status'] == "DONE") {
         document.getElementById("apptmt-prescription").innerHTML = `
             <label class="place-self-end self-center mr-4">Prescription</label>
             <textarea class="border h-24 border-black rounded-3xl p-4" id="prescription-content"
-                draggable="false" style="resize: none;" disabled>${data["prescription"]}</textarea>
+                draggable="false" style="resize: none;" disabled>${data["prescription"] ? data["prescription"] : ""}</textarea>
         `
     } else if (data['status'] == "TODO") {
         document.getElementById("apptmt-prescription").innerHTML = ``
@@ -58,7 +64,7 @@ const insertEnabledPrescriptionIfStatusInProgress = (data) => {
 const insertButtonElement = (data) => {
     if (data["status"] == "INPROGRESS") {
         document.getElementById("prescription-div").innerHTML = `
-            <button data-mydata='${JSON.stringify(data)}' onclick="updatePrescription(event)" id="prescription-submit-btn" class="border rounded-3xl">Submit</button>
+            <button data-mydata='${JSON.stringify(data)}' onclick="updatePrescriptionAndRemarks(event)" id="prescription-submit-btn" class="border rounded-3xl">Submit</button>
         `
     } else {
         document.getElementById("prescription-div").innerHTML = ``
@@ -84,13 +90,32 @@ const insertStatusElement = (data) => {
     }
 }
 
+const insertRemarksElement = (data) => {
+    if (data['status'] == "INPROGRESS") {
+        document.getElementById("apptmt-remarks").innerHTML = `
+            <label class="place-self-end self-center mr-4">Remarks</label>
+            <textarea class="border h-24 border-black rounded-3xl p-4" id="remarks-content"
+                draggable="false" style="resize: none;">${data["remarks"] ? data["remarks"] : ""}</textarea>
+        `
+    } else if (data['status'] == "DONE") {
+        document.getElementById("apptmt-remarks").innerHTML = `
+            <label class="place-self-end self-center mr-4">Remarks</label>
+            <textarea class="border h-24 border-black rounded-3xl p-4" id="remrks-content-disabled"F
+                draggable="false" style="resize: none;" disabled>${data["remarks"] ? data["remarks"] : ""}</textarea>
+        `
+    } else if (data['status'] == "TODO") {
+        document.getElementById("apptmt-remarks").innerHTML = ``
+    }
+}
+
 const handleAppointmentChange = (event) => {
-        console.log(event.currentTarget)
-        let data = JSON.parse(event.currentTarget.getAttribute("data-mydata"))
-        console.log(data)
-        document.getElementById("apptmt-date").innerHTML = data['date']
-        document.getElementById("apptmt-timeslot").innerHTML = data['timeSlot']
-        insertStatusElement(data)
-        insertEnabledPrescriptionIfStatusInProgress(data)
-        insertButtonElement(data)
+    console.log(event.currentTarget)
+    let data = JSON.parse(event.currentTarget.getAttribute("data-mydata"))
+    console.log(data)
+    document.getElementById("apptmt-date").innerHTML = data['date']
+    document.getElementById("apptmt-timeslot").innerHTML = data['timeSlot']
+    insertStatusElement(data)
+    insertRemarksElement(data)
+    insertEnabledPrescriptionIfStatusInProgress(data)
+    insertButtonElement(data)
 }
