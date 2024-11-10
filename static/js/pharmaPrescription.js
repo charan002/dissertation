@@ -28,7 +28,7 @@ const handleUserPrescription = async (event) => {
     prescriptionHTML = ""
     jsObj.forEach(ele => {
         prescriptionHTML += `
-            <div>
+            <div class="flex items-center rounded-3xl bg-white mb-4 drop-shadow-lg mx-4 p-4 min-w-64">
                 ${ele['date']}  
                 -
                 ${ele['prescription']}
