@@ -178,6 +178,9 @@ def get_remarks_and_prescriptions():
             {'status': 'DONE'}
         ]}))
         changeObjectId(user_data)
+        for item in user_data:
+            date_obj = datetime.strptime(item['date'], '%Y-%m-%d')
+            item['displayDate'] = date_obj.strftime("%Y-%b-%d")
         data = {
             'remarksAndPrescriptions': user_data
         }
