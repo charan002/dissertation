@@ -27,6 +27,29 @@ wrongbtn.addEventListener('click', () => {
 const appointmentFormElement = document.getElementById("appointment-form")
 const makeAppointmentBtn = document.getElementById("make-appointment-btn")
 
+function compareTimes(time1, time2) {
+    const [hours1, minutes1] = time1.split(":").map(Number);
+    const [hours2, minutes2] = time2.split(":").map(Number);
+    if (hours1 < hours2 || (hours1 === hours2 && minutes1 < minutes2)) {
+        return 1;
+    } else if (hours1 > hours2 || (hours1 === hours2 && minutes1 > minutes2)) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+const checkTime = (item) => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const time = `${hours}:${minutes}`;
+    console.log(compareTimes(time, item), time, item.split("-")[0])
+    if (compareTimes(time, item.split("-")[0]) <= 0) {
+        return true
+    }
+}
+
 const getTimeSlots = (data) => {
     const times = [];
     const [startHour, startMinute] = data["starttime"].split(":").map(Number);
@@ -36,10 +59,16 @@ const getTimeSlots = (data) => {
         times.push(`${i}:${endHour}-${i + 1}:${endHour + 1}`)
     }
 
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const time = `${hours}:${minutes}`;
+    console.log(time)
+
     let slotHTML = ''
     times.forEach((item) => {
         slotHTML += `
-        <option>
+        <option  ${checkTime(item) ? "disabled" : ""}>
             ${item}
         </option>`
     })
@@ -166,4 +195,8 @@ const handleSlotSelection = (event) => {
     const formData = new FormData(document.getElementById("slot-booking-form"))
     console.log(formData.get("timeslot"))
     handleSlotBooking(formData.get("timeslot"))
+}
+
+const redirect = (path) => {
+    window.location.href = path
 }

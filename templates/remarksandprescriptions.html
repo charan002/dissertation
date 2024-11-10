@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/output.css') }}">
+</head>
+<body>
+    <div>
+        {% if data.remarksAndPrescriptions %}
+            {% for item in data.remarksAndPrescriptions %}
+                <div>
+                    <p>{{ item.doctorName }}</p>
+                    <p>{{ item.hospitalname }}</p>
+                    <p>{{ item.date }}</p>
+                    <p>{{ item.status }}</p>
+                    <p>{{ item.prescription }}</p>
+                    <p>{{ item.remarks }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No Medical history</p>
+        {% endif %}
+    </div>
+</body>
+</html>

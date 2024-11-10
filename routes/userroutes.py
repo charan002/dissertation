@@ -134,8 +134,7 @@ def get_search_results():
         data = list(doc_collection.find({'doctortype': request.get_json()['doctype']}))
         print(data)
         timeRepData = list(time_reporting_collection.find({'$and': [
-            {'date': {'$eq': request.get_json()['date']}},
-            {'endtime': {'$gte': request.get_json()['time']}}
+            {'date': {'$eq': request.get_json()['date']}}
         ]}))
         final_list = []
         changeObjectId(data)
@@ -170,3 +169,18 @@ def mongo_test():
         doc['_id'] = None
     return jsonify(documents_list)
     
+
+@user_routes.route('/remarksandprescriptions')
+def get_remarks_and_prescriptions():
+    try:
+        user_data = list(appointments_collection.find({'$and': [
+            {'username': session.get('username')},
+            {'status': 'DONE'}
+        ]}))
+        changeObjectId(user_data)
+        data = {
+            'remarksAndPrescriptions': user_data
+        }
+        return render_template('remarksandprescriptions.html', data=data)
+    except Exception as e:
+        return jsonify({'error': f'{e}'})

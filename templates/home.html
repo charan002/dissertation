@@ -34,11 +34,8 @@
                             <label for="date" class="text-right">Date</label>
                             <input class="border border-black mx-4 rounded-3xl h-10 p-2" id="appointment-date"
                                 name="date" type="date" />
-                            <label for="time" class="text-right">Time</label>
-                            <input class="border border-black rounded-3xl mx-4 h-10 p-2" name="time"
-                                type="time" /><br />
                         </div>
-                        <button id="search-submit" class="rounded-3xl mb-4">Submit</button>
+                        <button id="search-submit" class="rounded-3xl my-4 mt-8">Submit</button>
                     </form>
                     <div id="search-results">
                     </div>
@@ -71,7 +68,7 @@
                 <button class="w-full rounded-3xl hover:bg-[#ffb326] mt-4">Schedule an appointment</button>
             </div>
             <div class="px-4">
-                <button class="w-full rounded-3xl hover:bg-[#ffb326] my-4">Prescriptions</button>
+                <button onclick="redirect('/remarksandprescriptions')" class="w-full rounded-3xl hover:bg-[#ffb326] my-4">Medical History & Prescriptions</button>
             </div>
             <div class="px-4">
                 <button class="w-full rounded-3xl hover:bg-[#ffb326] mb-4">Profile</button>
@@ -91,7 +88,7 @@
                         <div class="flex">
                             {% if data.todayAppointments %}
                             {% for item in data.todayAppointments %}
-                            <div class="flex items-center rounded-3xl bg-white mb-4 drop-shadow-lg mx-4 p-4">
+                            <div class="flex items-center rounded-3xl bg-white mb-4 drop-shadow-lg mx-4 p-4 min-w-64">
                                 <div class="ml-2">
                                     {% set date_parts = item.date.split('-') %}
                                     <p class="text-xs font-thin">{{ date_parts[0] }} {{ date_parts[1] }}</p>
@@ -146,7 +143,7 @@
                         <div class="flex m-0" id="userHomeApptn">
                             {% if data.appointments %}
                             {% for item in data.appointments %}
-                            <div class="flex mx-4 p-4 items-center rounded-3xl bg-white mb-4 drop-shadow-lg">
+                            <div class="flex mx-4 p-4 items-center rounded-3xl bg-white mb-4 drop-shadow-lg min-w-64">
                                 <div class="ml-2">
                                     {% set date_parts = item.date.split('-') %}
                                     <p class="text-xs font-thin">{{ date_parts[0] }} {{ date_parts[1] }}</p>
