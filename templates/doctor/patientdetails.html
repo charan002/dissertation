@@ -61,43 +61,49 @@
                     <div class="flex flex-col m-4 items-center">
                         <div class="w-full border border-black rounded-3xl p-4 py-10 bg-white">
                             <h1 class="mb-4 text-2xl">Appointment details</h1>
-                            <div class="grid grid-cols-[45%_55%] mb-2">
-                                <svg class="place-self-end mr-4" xmlns="http://www.w3.org/2000/svg" height="24px"
-                                    viewBox="0 -960 960 960" width="24px" fill="#434343">
-                                    <path
-                                        d="M212.31-100Q182-100 161-121q-21-21-21-51.31v-535.38Q140-738 161-759q21-21 51.31-21h55.38v-84.61h61.54V-780h303.08v-84.61h60V-780h55.38Q778-780 799-759q21 21 21 51.31v535.38Q820-142 799-121q-21 21-51.31 21H212.31Zm0-60h535.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-375.38H200v375.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85ZM200-607.69h560v-100q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v100Zm0 0V-720v112.31Zm280 210.77q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.04 0-14.69 10.34-25.04 10.35-10.34 25.04-10.34t25.04 10.34q10.34 10.35 10.34 25.04 0 14.7-10.34 25.04-10.35 10.35-25.04 10.35Zm-160 0q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.04 0-14.69 10.34-25.04 10.35-10.34 25.04-10.34t25.04 10.34q10.34 10.35 10.34 25.04 0 14.7-10.34 25.04-10.35 10.35-25.04 10.35Zm320 0q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.04 0-14.69 10.34-25.04 10.35-10.34 25.04-10.34t25.04 10.34q10.34 10.35 10.34 25.04 0 14.7-10.34 25.04-10.35 10.35-25.04 10.35ZM480-240q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.03 0-14.7 10.34-25.04 10.35-10.35 25.04-10.35t25.04 10.35q10.34 10.34 10.34 25.04 0 14.69-10.34 25.03Q494.69-240 480-240Zm-160 0q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.03 0-14.7 10.34-25.04 10.35-10.35 25.04-10.35t25.04 10.35q10.34 10.34 10.34 25.04 0 14.69-10.34 25.03Q334.69-240 320-240Zm320 0q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.03 0-14.7 10.34-25.04 10.35-10.35 25.04-10.35t25.04 10.35q10.34 10.34 10.34 25.04 0 14.69-10.34 25.03Q654.69-240 640-240Z" />
-                                </svg>
-                                <p id="apptmt-date" class="place-self-start">{{ item.date }}</p>
-                            </div>
-                            <div class="grid grid-cols-[45%_55%] mb-2">
-                                <svg class="place-self-end mr-4" xmlns="http://www.w3.org/2000/svg" height="24px"
-                                    viewBox="0 -960 960 960" width="24px" fill="#434343">
-                                    <path
-                                        d="m618.92-298.92 42.16-42.16L510-492.16V-680h-60v212.15l168.92 168.93ZM480.07-100q-78.84 0-148.21-29.92t-120.68-81.21q-51.31-51.29-81.25-120.63Q100-401.1 100-479.93q0-78.84 29.92-148.21t81.21-120.68q51.29-51.31 120.63-81.25Q401.1-860 479.93-860q78.84 0 148.21 29.92t120.68 81.21q51.31 51.29 81.25 120.63Q860-558.9 860-480.07q0 78.84-29.92 148.21t-81.21 120.68q-51.29 51.31-120.63 81.25Q558.9-100 480.07-100ZM480-480Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z" />
-                                </svg>
-                                <p id="apptmt-timeslot" class="place-self-start">{{ item.timeSlot }}</p>
-                            </div>
-                            <div class="grid grid-cols-[45%_55%] mb-2">
-                                <svg class="place-self-end mr-4" xmlns="http://www.w3.org/2000/svg" height="24px"
-                                    viewBox="0 -960 960 960" width="24px" fill="#434343">
-                                    <path
-                                        d="M173.08-173.08v-60H290l-29.08-27.84q-49.3-45.62-70.11-102.12Q170-419.54 170-477.23q0-103.69 60.73-185.96Q291.46-745.46 390-776.15v63.23q-72.39 28.3-116.19 92.73Q230-555.77 230-477.23q0 46.92 17.77 91.15 17.77 44.23 55.31 81.77l25.38 25.39v-109.54h60v215.38H173.08ZM570-183.85v-63.23q72.39-28.3 116.19-92.73Q730-404.23 730-482.77q0-46.92-17.77-91.15-17.77-44.23-55.31-81.77l-25.38-25.39v109.54h-60v-215.38h215.38v60H670l29.08 27.84q47.46 47.47 69.19 103.04Q790-540.46 790-482.77q0 103.69-60.73 185.96Q668.54-214.54 570-183.85Z" />
-                                </svg>
-                                <p id="apptmt-status" class="place-self-start">{{ item.status }}</p>
-                            </div>
-                            <div id="apptmt-status-change"
+                            
+                                    
+                                    <div class="grid grid-cols-[45%_55%] mb-2">
+                                        <svg class="place-self-end mr-4" xmlns="http://www.w3.org/2000/svg" height="24px"
+                                            viewBox="0 -960 960 960" width="24px" fill="#434343">
+                                            <path
+                                                d="M212.31-100Q182-100 161-121q-21-21-21-51.31v-535.38Q140-738 161-759q21-21 51.31-21h55.38v-84.61h61.54V-780h303.08v-84.61h60V-780h55.38Q778-780 799-759q21 21 21 51.31v535.38Q820-142 799-121q-21 21-51.31 21H212.31Zm0-60h535.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-375.38H200v375.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85ZM200-607.69h560v-100q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v100Zm0 0V-720v112.31Zm280 210.77q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.04 0-14.69 10.34-25.04 10.35-10.34 25.04-10.34t25.04 10.34q10.34 10.35 10.34 25.04 0 14.7-10.34 25.04-10.35 10.35-25.04 10.35Zm-160 0q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.04 0-14.69 10.34-25.04 10.35-10.34 25.04-10.34t25.04 10.34q10.34 10.35 10.34 25.04 0 14.7-10.34 25.04-10.35 10.35-25.04 10.35Zm320 0q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.04 0-14.69 10.34-25.04 10.35-10.34 25.04-10.34t25.04 10.34q10.34 10.35 10.34 25.04 0 14.7-10.34 25.04-10.35 10.35-25.04 10.35ZM480-240q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.03 0-14.7 10.34-25.04 10.35-10.35 25.04-10.35t25.04 10.35q10.34 10.34 10.34 25.04 0 14.69-10.34 25.03Q494.69-240 480-240Zm-160 0q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.03 0-14.7 10.34-25.04 10.35-10.35 25.04-10.35t25.04 10.35q10.34 10.34 10.34 25.04 0 14.69-10.34 25.03Q334.69-240 320-240Zm320 0q-14.69 0-25.04-10.35-10.34-10.34-10.34-25.03 0-14.7 10.34-25.04 10.35-10.35 25.04-10.35t25.04 10.35q10.34 10.34 10.34 25.04 0 14.69-10.34 25.03Q654.69-240 640-240Z" />
+                                        </svg>
+                                        <p id="apptmt-date" class="place-self-start">{{ item.date }}</p>
+                                    </div>
+                                    <div class="grid grid-cols-[45%_55%] mb-2">
+                                        <svg class="place-self-end mr-4" xmlns="http://www.w3.org/2000/svg" height="24px"
+                                            viewBox="0 -960 960 960" width="24px" fill="#434343">
+                                            <path
+                                                d="m618.92-298.92 42.16-42.16L510-492.16V-680h-60v212.15l168.92 168.93ZM480.07-100q-78.84 0-148.21-29.92t-120.68-81.21q-51.31-51.29-81.25-120.63Q100-401.1 100-479.93q0-78.84 29.92-148.21t81.21-120.68q51.29-51.31 120.63-81.25Q401.1-860 479.93-860q78.84 0 148.21 29.92t120.68 81.21q51.31 51.29 81.25 120.63Q860-558.9 860-480.07q0 78.84-29.92 148.21t-81.21 120.68q-51.29 51.31-120.63 81.25Q558.9-100 480.07-100ZM480-480Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z" />
+                                        </svg>
+                                        <p id="apptmt-timeslot" class="place-self-start">{{ item.timeSlot }}</p>
+                                    </div>
+                                    <div class="grid grid-cols-[45%_55%] mb-2">
+                                        <svg class="place-self-end mr-4" xmlns="http://www.w3.org/2000/svg" height="24px"
+                                            viewBox="0 -960 960 960" width="24px" fill="#434343">
+                                            <path
+                                                d="M173.08-173.08v-60H290l-29.08-27.84q-49.3-45.62-70.11-102.12Q170-419.54 170-477.23q0-103.69 60.73-185.96Q291.46-745.46 390-776.15v63.23q-72.39 28.3-116.19 92.73Q230-555.77 230-477.23q0 46.92 17.77 91.15 17.77 44.23 55.31 81.77l25.38 25.39v-109.54h60v215.38H173.08ZM570-183.85v-63.23q72.39-28.3 116.19-92.73Q730-404.23 730-482.77q0-46.92-17.77-91.15-17.77-44.23-55.31-81.77l-25.38-25.39v109.54h-60v-215.38h215.38v60H670l29.08 27.84q47.46 47.47 69.19 103.04Q790-540.46 790-482.77q0 103.69-60.73 185.96Q668.54-214.54 570-183.85Z" />
+                                        </svg>
+                                        <p id="apptmt-status" class="place-self-start">{{ item.status }}</p>
+                                    </div>
+                                
+
+                                <div id="apptmt-status-change"
                                 class="grid grid-cols-[45%_55%] items-center justify-center mb-2">
-                                {% if item.status != "DONE" %}
-                                <label class="place-self-end self-center mr-4">Change Status</label>
-                                <select id="status-dropdown" class="border border-black rounded-3xl h-10 px-4"
-                                    onchange="handleStatusChange(event)">
-                                    <option disabled selected>Select</option>
-                                    <option value="TODO">Todo</option>
-                                    <option value="INPROGRESS">Inprogress</option>
-                                    <option value="DONE">Done</option>
-                                </select>
-                                {% endif %}
-                            </div>
+                                    {% if item.status != "DONE" %}
+                                    <label class="place-self-end self-center mr-4">Change Status</label>
+                                    <select id="status-dropdown" class="border border-black rounded-3xl h-10 px-4"
+                                        onchange="handleStatusChange(event)">
+                                        <option disabled selected>Select</option>
+                                        <option value="TODO">Todo</option>
+                                        <option value="INPROGRESS">Inprogress</option>
+                                        <option value="DONE">Done</option>
+                                    </select>
+                                    {% endif %}
+                                </div>
+                            
+
                             <br>
                             <hr>
                             <br>
@@ -110,7 +116,7 @@
                                     style="resize: none;">{% if item.remarks %}{{ item.remarks }}{% endif %}</textarea>
                                 {% endif %}
                                 {% if item.status == "DONE" %}
-                                <label class=" self-center text-2xl">Prescription</label>
+                                <label class=" self-center text-2xl">Remarks</label>
                                 <br/>
                                 <textarea class="border h-24 border-black rounded-3xl p-4" id="remarks-content-disabled"
                                     draggable="false" disabled style="resize: none;">{{item.remarks}}
@@ -126,9 +132,7 @@
                                     style="resize: none;">{% if item.prescription %}{{ item.prescription }}{% endif %}</textarea>
                                 {% endif %}
                                 {% if item.status == "DONE" %}
-                                <br>
-                                <hr>
-                                <br>
+                                
                                 <label class=" self-center text-2xl">Prescription</label>
                                 <br>
                                 <textarea class="border h-24 border-black rounded-3xl p-4" id="prescription-content-disabled"

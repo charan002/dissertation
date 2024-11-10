@@ -46,13 +46,17 @@ const updatePrescriptionAndRemarks = async (event) => {
 const insertEnabledPrescriptionIfStatusInProgress = (data) => {
     if (data['status'] == "INPROGRESS") {
         document.getElementById("apptmt-prescription").innerHTML = `
-            <label class="place-self-end self-center mr-4">Prescription</label>
+            
+            <label class="self-center text-2xl">Prescribe below</label>
+            <br>
             <textarea class="border h-24 border-black rounded-3xl p-4" id="prescription-content"
                 draggable="false" style="resize: none;">${data["prescription"] ? data["prescription"] : ""}</textarea>
         `
     } else if (data['status'] == "DONE") {
-        document.getElementById("apptmt-prescription").innerHTML = `
-            <label class="place-self-end self-center mr-4">Prescription</label>
+        document.getElementById("apptmt-prescription").innerHTML = ` 
+            
+            <label class=" self-center text-2xl">Prescription</label>
+            <br>
             <textarea class="border h-24 border-black rounded-3xl p-4" id="prescription-content"
                 draggable="false" style="resize: none;" disabled>${data["prescription"] ? data["prescription"] : ""}</textarea>
         `
@@ -93,13 +97,15 @@ const insertStatusElement = (data) => {
 const insertRemarksElement = (data) => {
     if (data['status'] == "INPROGRESS") {
         document.getElementById("apptmt-remarks").innerHTML = `
-            <label class="place-self-end self-center mr-4">Remarks</label>
+            <label class="self-center text-2xl">Enter Remarks</label>
+            <br>
             <textarea class="border h-24 border-black rounded-3xl p-4" id="remarks-content"
                 draggable="false" style="resize: none;">${data["remarks"] ? data["remarks"] : ""}</textarea>
         `
     } else if (data['status'] == "DONE") {
         document.getElementById("apptmt-remarks").innerHTML = `
-            <label class="place-self-end self-center mr-4">Remarks</label>
+            <label class="self-center text-2xl">Remarks</label>
+            <br>
             <textarea class="border h-24 border-black rounded-3xl p-4" id="remrks-content-disabled"F
                 draggable="false" style="resize: none;" disabled>${data["remarks"] ? data["remarks"] : ""}</textarea>
         `
