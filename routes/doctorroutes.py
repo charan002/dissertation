@@ -60,14 +60,10 @@ def doctor_login():
             if user_db_data != None and data.get('password') == user_db_data['password']:
                 session['doctorid'] = data.get('doctorid')
                 session['usertype'] = 'doctor'
-                print('authenticated')
                 return redirect('/doc/')
         except Exception as e:
             return jsonify({'error': f'generic error {str(e)}'})
         
-# @doctor_routes.route('/doc/ptientdetails') #, methods=['GET', 'POST'])
-# def doctor_back_home():
-#     return redirect('/doc/')
         
 @doctor_routes.route('/register', methods=['GET', 'POST'])
 def user_signup():
@@ -75,7 +71,6 @@ def user_signup():
         return render_template('doctor/register.html')
     elif request.method == 'POST':
         try:
-            print('post req', request.form)
             data = {
                 'doctorid': request.form.get('doctorid'),
                 'firstname': request.form.get('firstname'),
@@ -85,14 +80,12 @@ def user_signup():
                 'doctortype': request.form.get('doctortype'),
                 'password': request.form.get('password')
             }
-            print(data)
             doctor_signup_validator(data)
             collection.insert_one(data)
             session['doctorid'] = request.form.get('doctorid')
             session['usertype'] = 'doctor'
             return redirect('/doc/')
         except Exception as e:
-            print(e)
             return jsonify({'error': str(e)}), 500
         
 @doctor_routes.route('/logout')
@@ -111,7 +104,6 @@ def user_logout():
 @doctor_routes.route('/')
 def home():
     today = datetime.today().strftime('%Y-%m-%d')
-    print(today)
     time_data = list(timeReportCollection.find({'doctorid': session.get('doctorid'), 'date': today}))
     time_data_future = list(timeReportCollection.find({'doctorid': session.get('doctorid'), 'date': {'$gt': today}}))
     doc_info = collection.find_one({'doctorid': session.get('doctorid')})
@@ -134,7 +126,6 @@ def home():
 
 @doctor_routes.post('/submit/timereport')
 def submit_time_report():
-    print(request.get_json())
     data = {
         'doctorid': session['doctorid'],
         **request.get_json()
@@ -159,14 +150,29 @@ def render_patient_details():
         {'doctorid': session.get('doctorid')},
         {'username': username}
     ]}))
+    all_user_appointments_db = list(appointmentsCollection.find({'$and': [
+        {"$nor": [{"doctorid": session.get("doctorid")}]},
+        {"username": username}
+    ]}))
+    for item in all_user_appointments_db:
+        date_obj = datetime.strptime(item['date'], '%Y-%m-%d')
+        item['displayDate'] = date_obj.strftime("%Y-%b-%d")
+    changeObjectId(all_user_appointments_db)
+    print(all_user_appointments_db)
+    all_user_appointments = {}
+    for item in all_user_appointments_db:
+        if all_user_appointments.get(item['hospitalname']) is None:
+            all_user_appointments[item['hospitalname']] = [item]
+        else:
+            all_user_appointments[item['hospitalname']].append(item)
     data = {
         'currentAppointment': appointment_data,
-        'allUserAppointments': user_appointments
+        'allUserAppointments': user_appointments,
+        'otherUserAppointments': all_user_appointments
     }
     for item in user_appointments:
         date_obj = datetime.strptime(item['date'], '%Y-%m-%d')
         item['displayDate'] = date_obj.strftime("%Y-%b-%d")
-    print(data)
     changeObjectId(data['currentAppointment'])
     changeObjectId(data['allUserAppointments'])
     return render_template('/doctor/patientdetails.html', data=data)
