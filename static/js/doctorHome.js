@@ -18,6 +18,7 @@ document.getElementById('time-report-submit-btn').addEventListener("click", asyn
         }
     })
     console.log(response)
+    window.location.reload()
 })
 
 const doctorLogout = async () => {

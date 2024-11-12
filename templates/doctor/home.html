@@ -60,6 +60,9 @@
             </header>
             <div class="rounded-3xl px-4 pt-4 pb-32 overflow-hidden border border-black flex flex-col">
                 <h1 class="text-2xl">Your Appointments</h1>
+                {% if data.appointments|length == 0 %}
+                    <p>You dont have any appointments</p>
+                {% endif %}
                 <div class="flex flex-wrap">
                     {% for aptmt in data.appointments %}
                     <div class="rounded-3xl m-2 p-2 bg-white flex hover:cursor-pointer drop-shadow-xl min-w-[300px]"
@@ -97,6 +100,9 @@
                 <div class="flex justify-evenly">
                     <div class="m-2">
                         <h1 class="mb-2 text-2xl">Today's Reporting Time</h1>
+                        {% if data.timeReporting|length == 0 %}
+                            <p>You have no time reportings for today</p>
+                        {% endif %}
                         {% for report in data.timeReporting %}
                         <div class="flex items-center rounded-3xl bg-white mb-4 drop-shadow-lg mx-4 p-4 min-w-64">
                             <div class="ml-2">   
@@ -123,6 +129,9 @@
                     </div>
                     <div class="m-2">
                         <h1 class="mb-2 text-2xl">Scheduled Reporting Time</h1>
+                        {% if data.timeReporting|length == 0 %}
+                            <p>You have no Scheduled time reporting</p>
+                        {% endif %}
                         {% for report in data.futureTimeReporting %}
                         <div class="flex items-center rounded-3xl bg-white mb-4 drop-shadow-lg mx-4 p-4 min-w-64">
                             <div class="ml-2">   

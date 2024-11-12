@@ -152,7 +152,8 @@ def render_patient_details():
     ]}))
     all_user_appointments_db = list(appointmentsCollection.find({'$and': [
         {"$nor": [{"doctorid": session.get("doctorid")}]},
-        {"username": username}
+        {"username": username},
+        {"status": "DONE"}
     ]}))
     for item in all_user_appointments_db:
         date_obj = datetime.strptime(item['date'], '%Y-%m-%d')

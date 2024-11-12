@@ -16,7 +16,7 @@
                 <div>
                     <h1 class="text-2xl">All Appointments:</h1>
                     <div class="flex flex-col">
-                        {% if data.allUserAppointments %}
+                        {% if data.allUserAppointments and data.allUserAppointments|length >0 %}
                         {% for item in data.allUserAppointments %}
                         <div class="bg-gray-100 m-1 rounded-3xl p-2">
                             <div data-mydata='{{item | tojson}}' onclick="handleAppointmentChange(event)"
@@ -42,9 +42,13 @@
                             </div>
                         </div>
                         {% endfor %}
+                        {% else %}
+                        <p>No Medical history found for this user</p>
                         {% endif %}
                     </div>
+                    {% if data.otherUserAppointments|length > 0 %}
                     <h1 class="text-3xl mt-4">Medical history</h1>
+                    {% endif %}
                     <div class="flex flex-col">
                         {% if data.otherUserAppointments %}
                         {% for hospital,items in data.otherUserAppointments.items() %}

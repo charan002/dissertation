@@ -85,6 +85,9 @@
                     <div>
                         <p class="text-2xl">Today's Appointments</p>
                         <br />
+                        {% if data.todayAppointments|length == 0 %}
+                            <p>You dont have any appointments Scheduled for today</p>
+                        {% endif %}
                         <div class="flex">
                             {% if data.todayAppointments %}
                             {% for item in data.todayAppointments %}
@@ -140,7 +143,7 @@
                     <div class="">
                         <p class="text-2xl">Other Appointments</p>
                         <br>
-                        <div class="flex m-0" id="userHomeApptn">
+                        <div class="flex flex-wrap m-0" id="userHomeApptn">
                             {% if data.appointments %}
                             {% for item in data.appointments %}
                             <div class="flex mx-4 p-4 items-center rounded-3xl bg-white mb-4 drop-shadow-lg min-w-64">
