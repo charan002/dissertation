@@ -118,6 +118,7 @@ const handleAppointmentChange = (event) => {
     console.log(event.currentTarget)
     let data = JSON.parse(event.currentTarget.getAttribute("data-mydata"))
     console.log(data)
+    document.getElementById("apptmt-doctorid").innerHTML = data['doctorid']
     document.getElementById("apptmt-date").innerHTML = data['date']
     document.getElementById("apptmt-timeslot").innerHTML = data['timeSlot']
     insertStatusElement(data)

@@ -1,0 +1,34 @@
+{
+  "Apollo": [
+    {
+      "_id": "67336fac77fdc3d263fb474f",
+      "doctorid": "Charan_Doc",
+      "hospitalname": "Apollo",
+      "timeSlot": "11:17-12:18",
+      "doctorName": "DCK DCK",
+      "status": "DONE",
+      "date": "2024-11-13",
+      "doctortype": "general",
+      "username": "Charan_User",
+      "prescription": "Lung Medicine - 1\nLung Medicine - 2",
+      "remarks": "Lung Condition - Severe",
+      "displayDate": "2024-Nov-13"
+    }
+  ],
+  "MMM": [
+    {
+      "_id": "67337b5577fdc3d263fb475c",
+      "doctorid": "Doctor 3",
+      "hospitalname": "MMM",
+      "timeSlot": "16:23-17:24",
+      "doctorName": "Neuro Neuro",
+      "status": "DONE",
+      "date": "2024-11-12",
+      "doctortype": "diet",
+      "username": "Charan_User",
+      "prescription": "Neuro Medicine - 1\nNeuro Medicine - 2",
+      "remarks": "Neuro Problem - 1",
+      "displayDate": "2024-Nov-12"
+    }
+  ]
+}

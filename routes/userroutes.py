@@ -131,6 +131,7 @@ def home():
 @user_routes.post('/getsearchresults')
 def get_search_results():
     try:
+        print(request.get_json())
         data = list(doc_collection.find({'doctortype': request.get_json()['doctype']}))
         print(data)
         timeRepData = list(time_reporting_collection.find({'$and': [

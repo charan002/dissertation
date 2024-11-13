@@ -170,7 +170,9 @@ def render_patient_details():
         'currentAppointment': appointment_data,
         'allUserAppointments': user_appointments,
         'otherUserAppointments': all_user_appointments
+        
     }
+    print(data.get('otherUserAppointments'))
     for item in user_appointments:
         date_obj = datetime.strptime(item['date'], '%Y-%m-%d')
         item['displayDate'] = date_obj.strftime("%Y-%b-%d")
