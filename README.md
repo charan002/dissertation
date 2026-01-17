@@ -1,17 +1,18 @@
 Mongo DB - 
-  Use MongoDB Compass (GUI). Link: "https://www.mongodb.com/try/download/compass"
-  run the following comands to install MongoDB Community edition
+  
+  Use MongoDB Compass (GUI). Link: "https://www.mongodb.com/try/download/compass".
+  
+  Run the following comands to install MongoDB Community edition
   
     brew tap mongodb/brew 
     brew install mongodb-community                     #To install MongoDB.
     brew services start mongodb-community              #To start the MongoDB services.
 
-  By default, MongoDB uses "mongodb://localhost:27017/" port. 
-  Provide 'Project Name' field as "projectdb"
-
+  By default, MongoDB uses "mongodb://localhost:27017/" port. Provide 'Project Name' field as "projectdb".
   On the GUI app, create a new connection and connect and save.
 
 Tailwind CSS - 
+  
   First install Node.js with the following command.
   
     brew install node                                  #To install Node.js.
